@@ -1,0 +1,41 @@
+
+body {
+    font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, .lead {
+    font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+pre code {
+    background: transparent;
+}
+
+/*@media (min-width: 168px) {
+    .bs-docs-home .bs-social,
+    .bs-docs-home .bs-masthead-links {
+        margin-left: 0;
+    }
+}*/
+
+.bs-docs-section p {
+    line-height: 2;
+}
+
+.bs-docs-section p.lead {
+    line-height: 1.4;
+}
+
+@media screen and (max-width: 1075px){
+    img{
+        max-width: 666px;
+    }
+}
+@media screen and (min-width: 1075px){
+    img{
+        max-width: 786px;
+    }
+}
+
+
+

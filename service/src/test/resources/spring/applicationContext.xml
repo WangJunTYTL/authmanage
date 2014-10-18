@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	">
+    <context:component-scan base-package="com.peaceful.auth.center.daoImpl"/>
+    <context:component-scan base-package="com.peaceful.auth.center.ServiceImpl"/>
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://192.168.27.44:3308/DB_AUTH"></property>
+        <property name="user" value="dj_t"></property>
+        <property name="password" value="da@jie.123"></property>
+        <property name="minPoolSize" value="2"></property>
+        <property name="maxPoolSize" value="50"></property>
+        <property name="acquireIncrement" value="2"></property>
+        <property name="maxIdleTime" value="20"></property>
+
+    </bean>
+
+    <!-- <property name="connection.url">
+            jdbc:mysql://127.0.0.1:3306/com.dj.com.dajie.auth
+        </property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">110</property>
+        <property name="connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>-->
+
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="configLocation" value="classpath:hibernate/hibernate.cfg.xml">
+        </property>
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+
+    <bean id="transactionManger"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--切入点  -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManger">
+        <tx:attributes>
+            <tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED"/>
+            <tx:method name="insert*" propagation="REQUIRED" isolation="READ_COMMITTED"/>
+            <tx:method name="delete*" propagation="REQUIRED"
+                       isolation="READ_COMMITTED"/>
+            <tx:method name="find*" propagation="REQUIRED"
+                       isolation="READ_COMMITTED"/>
+            <tx:method name="*" read-only="true" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut expression="execution(* com.peaceful.auth.center.ServiceImpl.*.*(..))" id="usermanageservicepointcut"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="usermanageservicepointcut"/>
+    </aop:config>
+</beans>
