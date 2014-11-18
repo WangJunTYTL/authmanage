@@ -10,8 +10,12 @@
 source /etc/profile
 ENV=$1
 [ "x${ENV}" == "x" ] && ENV='dev' # dev test product
-echo ${ENV}
+echo '----------------------------------------------'
+echo "构建环境：${ENV}"
+echo '----------------------------------------------'
 
+
+#下载依赖包，最好手动将依赖包install到你的本地仓库
 [ ! -d "peaceful-common-utils" ] && git clone git@github.com:WangJunTYTL/peaceful-parent.git
 [ ! -d "peaceful-common-utils" ] && git clone git@github.com:WangJunTYTL/peaceful-common-utils.git
 
