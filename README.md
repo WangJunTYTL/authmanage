@@ -1,1 +1,1 @@
-authManage是一个统一权限系统，它可以为不同的系统提供权限服务
+Hello hibernateDemo
