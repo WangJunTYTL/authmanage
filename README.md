@@ -12,3 +12,14 @@ auth manage
 1. 粒度随意掌控，可大可小
 1. 支持spring
 
+## 安装与运行
+
+1. 运行之前请先安装maven和git
+2. 将代码clone到本地后，需要先修改./auth-web/src/man/filters/dev.properties,配置你自己的数据库连接
+2. 执行sh run.sh，成功启动后访问 [http://localhost:8888](http://localhost:8888)，如果看到登陆页面，说明程序启动成功
+
+## 数据库生成
+
+
+
+
