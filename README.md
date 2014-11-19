@@ -26,15 +26,15 @@ auth manage
 
 ## 客户端开发
 
-### 加入依赖：
+##### 加入依赖：
     <groupId>com.peaceful</groupId>
     <artifactId>nuggets-auth-sdk</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-### 获得服务
+##### 获得服务
     AuthService authService = AuthServiceImpl.getAuthService();
 
-### 两个主要服务接口
+##### 两个主要服务接口
 
 
 
