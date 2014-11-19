@@ -17,8 +17,12 @@ auth manage
 1. 运行之前请先安装maven和git
 2. 将代码clone到本地后，需要先修改./auth-web/src/man/filters/dev.properties,配置你自己的数据库连接
 2. 执行sh run.sh，成功启动后访问 [http://localhost:8888](http://localhost:8888)，如果看到登陆页面，说明程序启动成功
+1. 关于登陆账号，请继续向下看数据库创建
 
-## 数据库生成
+## 数据库创建
+
+当程序第一次成功启动后，会自动在你配置的数据库中创建数据表，这是利用hibernate的特点，你需要administrator表添加一对账号和密码
+作为你的登陆账号
 
 
 
