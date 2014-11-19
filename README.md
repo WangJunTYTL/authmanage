@@ -22,7 +22,22 @@ auth manage
 ## 数据库创建
 
 当程序第一次成功启动后，会自动在你配置的数据库中创建数据表，这是利用hibernate的特点，你需要administrator表添加一对账号和密码
-作为你当前的登陆账号
+作为你当前的登陆账号，现在一个完整地权限中心已经运行起来了，接下来请看客户端SDK的介绍
+
+## 客户端开发
+
+### 加入依赖：
+    <groupId>com.peaceful</groupId>
+    <artifactId>nuggets-auth-sdk</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+### 获得服务
+    AuthService authService = AuthServiceImpl.getAuthService();
+
+### 两个主要服务接口
+
+
+
 
 
 
