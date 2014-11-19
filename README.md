@@ -48,6 +48,28 @@ auth manage
 有了这两个接口你就可以很方便的进行扩展，因为通过这两个接口你拿到的基本上是所有配置信息，此外，不要担心性能问题，因为通过这两个接口拿到的
 数据会缓存在客户端的服务器，你也没必要担心缓存数据过时问题，因为客户端会实时监测服务中心数据配置的变化，若有变化，客户端会立即重新加载缓存
 
+## 扩展
+
+### 客户端支持jstl表达式
+
+下面是一个样例，会根据客户端系统的当前登录是否在页面渲染menuKey=goods的按钮，按钮的样式是bootstrap3.3版本定义，这需要根据你自己的系统
+具体定制
+
+    <%@taglib uri="http://com.peacuful.com/auth/menu" prefix="menu" %>
+    <menu:menu menuKey="goods" menuLevel="L1"/>
+
+### 客户端支持注解配置
+
+下面是一个样例，会根据客户端系统的当前登录用户决定是否可以请求addMeta controller
+
+    @AUTH.Function(keys={"goods,mall"})
+    @AUTH.Role(keys={admin})
+    @RequestMapping(value = "/item/meta/add", method = {RequestMethod.POST})
+    public void addMeta(HttpServletRequest request, HttpServletResponse response) {
+        ...
+    }
+
+上面这两个例子说明了客户端开发时易扩展的特点
 
 
 
