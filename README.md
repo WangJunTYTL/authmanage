@@ -64,9 +64,11 @@ auth manage
 
     @AUTH.Function(keys={"goods,mall"})
     @AUTH.Role(keys={admin})
-    @RequestMapping(value = "/item/meta/add", method = {RequestMethod.POST})
+    @RequestMapping(value = "/item/xxx", method = {RequestMethod.POST})
     public void addMeta(HttpServletRequest request, HttpServletResponse response) {
+
         ...
+
     }
 
 上面这两个例子说明了客户端开发时易扩展的特点
