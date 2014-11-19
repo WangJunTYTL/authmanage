@@ -12,6 +12,11 @@ auth manage
 1. 粒度随意掌控，可大可小
 1. 支持spring
 
+## 项目文档
+
+* [项目介绍](http://wangjuntytl.github.io)
+* [api](http://wangjuntytl.github.io)
+
 ## 安装与运行
 
 1. 运行之前请先安装maven和git
