@@ -34,7 +34,6 @@ auth manage
 ##### 加入依赖：
     <groupId>com.peaceful</groupId>
     <artifactId>nuggets-auth-sdk</artifactId>
-    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
 ##### 获得服务
     AuthService authService = AuthServiceImpl.getAuthService();
@@ -53,7 +52,7 @@ auth manage
 ### 客户端支持jstl表达式
 
 下面是一个样例，会根据客户端系统的当前登录是否在页面渲染menuKey=goods的按钮，按钮的样式是bootstrap3.3版本定义，这需要根据你自己的系统
-具体定制
+具体定制，具体样例参照类 MenuUtils
 
     <%@taglib uri="http://com.peacuful.com/auth/menu" prefix="menu" %>
     <menu:menu menuKey="goods" menuLevel="L1"/>
