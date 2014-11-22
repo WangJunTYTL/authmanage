@@ -61,8 +61,8 @@ auth manage
 
 下面是一个样例，会根据客户端系统的当前登录用户决定是否可以请求addMeta controller
 
-    @AUTH.Function(keys={"goods,mall"})
-    @AUTH.Role(keys={admin})
+    @AUTH.Function({"goods,mall"})
+    @AUTH.Role("admin")
     @RequestMapping(value = "/item/xxx", method = {RequestMethod.POST})
     public void addMeta(HttpServletRequest request, HttpServletResponse response) {
 
