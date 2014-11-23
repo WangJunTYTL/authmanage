@@ -54,6 +54,7 @@
                 <version>1.5.0</version>
                 <executions>
                     <execution>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>compress</goal>
                         </goals>
@@ -91,7 +92,7 @@
                     </webAppConfig>
                     <connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>8088</port>
+                            <port>8888</port>
                             <maxIdleTime>60000</maxIdleTime>
                         </connector>
                     </connectors>
