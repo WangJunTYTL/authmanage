@@ -23,7 +23,7 @@ echo '----------------------------------------------'
 [ ! -d "peaceful-common-utils" ] && git clone git@github.com:WangJunTYTL/peaceful-common-utils.git
 
 
-mvn -P${ENV} clean compile -Dmaven.test.skip=true
+mvn -P${ENV} clean compile -o -Dmaven.test.skip=true
 
 cd peaceful-parent
 mvn -P${ENV} install -o  -Dmaven.test.skip=true
@@ -51,6 +51,6 @@ mvn -P${ENV} install -o  -Dmaven.test.skip=true
 cd ..
 
 cd auth-web
-mvn jetty:run -Dmaven.test.skip=true
+mvn jetty:run -o -Dmaven.test.skip=true
 
 
