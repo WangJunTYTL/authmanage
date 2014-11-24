@@ -12,10 +12,6 @@ auth manage
 1. 粒度随意掌控，可大可小
 1. 支持spring
 
-## 架构
-
-![统一配置中心界面](/auth-web/src/main/webapp/image/architecture.JPG "统一配置中心界面")
-
 ## 项目文档
 
 * [项目介绍](http://wangjuntytl.github.io/project.html)
@@ -82,7 +78,11 @@ auth manage
 
     }
 
-上面这两个例子说明了客户端开发时易扩展的特点
+
+
+
+
+
 
 
 
