@@ -35,6 +35,14 @@ auth manage
     <groupId>com.peaceful</groupId>
     <artifactId>nuggets-auth-sdk</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+##### 配置
+    auth.app.id=1 #客户端在服务中心注册id
+    auth.service.address=http://10.10.1.110:8080 #服务中心地址
+    auth.user.session.out.time=2 #user info 缓存时间
+    auth.system.session.out.time=300 #system info 缓存时间
+    auth.context.impl.class=xxx #实现AuthContext抽象类的路径，这个可选配置
+
 ##### 获得服务
     AuthService authService = AuthServiceImpl.getAuthService();
 
