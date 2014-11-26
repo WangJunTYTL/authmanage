@@ -5,7 +5,7 @@ import com.peaceful.auth.data.domain.JSONMenu;
 import com.peaceful.auth.data.domain.JSONRole;
 import com.peaceful.auth.data.domain.JSONSystem;
 import com.peaceful.auth.data.domain.JSONUser;
-import com.peaceful.util.Util;
+import com.peaceful.common.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

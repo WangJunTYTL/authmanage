@@ -10,7 +10,7 @@ import com.peaceful.auth.center.domain.*;
 import com.peaceful.auth.data.VCS;
 import com.peaceful.auth.data.domain.*;
 import com.peaceful.auth.util.*;
-import com.peaceful.util.StringUtils;
+import com.peaceful.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

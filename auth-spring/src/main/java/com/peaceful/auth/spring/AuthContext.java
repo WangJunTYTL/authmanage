@@ -1,8 +1,8 @@
 package com.peaceful.auth.spring;
 
-import com.peaceful.util.StringUtils;
-import com.peaceful.util.Util;
-import com.peaceful.util.impl.AppConfigsImpl;
+import com.peaceful.common.util.StringUtils;
+import com.peaceful.common.util.Util;
+import com.peaceful.common.util.impl.AppConfigsImpl;
 
 /**
  * Date 14/11/15.

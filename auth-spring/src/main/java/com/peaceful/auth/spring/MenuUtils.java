@@ -4,7 +4,7 @@ import com.peaceful.auth.Impl.AuthServiceImpl;
 import com.peaceful.auth.api.AuthService;
 import com.peaceful.auth.data.domain.JSONMenu;
 import com.peaceful.auth.exception.CreateSessionException;
-import com.peaceful.util.StringUtils;
+import com.peaceful.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

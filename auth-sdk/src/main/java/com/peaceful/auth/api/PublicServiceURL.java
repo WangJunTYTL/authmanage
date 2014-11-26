@@ -1,8 +1,8 @@
 package com.peaceful.auth.api;
 
 import com.peaceful.auth.constant.GlobleConstant;
-import com.peaceful.util.AppConfigs;
-import com.peaceful.util.impl.AppConfigsImpl;
+import com.peaceful.common.util.AppConfigs;
+import com.peaceful.common.util.impl.AppConfigsImpl;
 
 /**
  * Created by wangjun on 14-8-12.
