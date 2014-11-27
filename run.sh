@@ -19,7 +19,7 @@ echo '----------------------------------------------'
 [ ! -n `which git` ] && "请先安装git，并添加git到path变量中"  && exit 1
 
 #下载依赖包，最好手动将依赖包install到你的本地仓库
-[ ! -d "peaceful-common-utils" ] && echo "下载依赖包" && git clone git@github.com:WangJunTYTL/peaceful-parent.git
+[ ! -d "peaceful-parent" ] && echo "下载依赖包" && git clone git@github.com:WangJunTYTL/peaceful-parent.git
 [ ! -d "peaceful-common-utils" ] && git clone git@github.com:WangJunTYTL/peaceful-common-utils.git
 
 
