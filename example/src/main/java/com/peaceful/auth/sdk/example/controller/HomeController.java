@@ -13,11 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by wangjun on 15/1/2.
  */
 @Controller
-@RequestMapping("home")
+@RequestMapping()
 public class HomeController {
     AuthService authService = AuthApi.getAuthService();
 
-    @RequestMapping("sys")
+    @RequestMapping({"","index","home"})
+    public String home(){
+        return "index";
+    }
+
+    @RequestMapping({"sys","getSys"})
     @AUTH.Function("getSysInfo")
     public void getSystemInfo() {
         Http.responseJSON(0,JSON.toJSONString(authService.getSystem()));
