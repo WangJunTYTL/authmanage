@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.peaceful</groupId>
+        <artifactId>peaceful-web-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.peaceful</groupId>
+    <artifactId>sdk-example</artifactId>
+    <version>1.0-SNAPSHOP</version>
+    <description>sdk dev example</description>
+
+    <properties>
+        <jetty.stop.port>9998</jetty.stop.port>
+        <jetty.run.port>8889</jetty.run.port>
+    </properties>
+
+
+    <dependencies>
+        <!--auth sdk start-->
+        <dependency>
+            <groupId>com.peaceful</groupId>
+            <artifactId>nuggets-auth-sdk</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--auth sdk end-->
+
+
+        <dependency>
+            <groupId>com.peaceful</groupId>
+            <artifactId>nuggets-auth-srping</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.peaceful</groupId>
+            <artifactId>peaceful-common-utils</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.peaceful</groupId>
+            <artifactId>peaceful-web-utils</artifactId>
+        </dependency>
+
+        <!--SPRING WEB MVC-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
