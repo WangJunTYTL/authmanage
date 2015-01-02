@@ -21,6 +21,7 @@
         <module>auth-web</module>
         <module>auth-sdk</module>
         <module>auth-spring</module>
+        <module>example</module>
     </modules>
 
     <build>

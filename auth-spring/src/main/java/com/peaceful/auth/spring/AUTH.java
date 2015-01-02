@@ -30,4 +30,15 @@ public class AUTH {
         public String[] value() default {};
 
     }
+
+    /**
+     * 要求登录
+     */
+    @Documented
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.METHOD})
+    public static @interface RequireLogin {
+        public String[] value() default {};
+
+    }
 }

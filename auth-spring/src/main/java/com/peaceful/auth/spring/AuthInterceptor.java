@@ -33,14 +33,28 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
-        if (StringUtils.isEmpty(AUTH_CONTEXT.getCurrentUser()))
-            return true;
         HandlerMethod handlerMethod = (HandlerMethod) handler;
+        AUTH.RequireLogin requireLogin = handlerMethod.getMethodAnnotation(AUTH.RequireLogin.class);
         AUTH.Function function = handlerMethod.getMethodAnnotation(AUTH.Function.class);
         AUTH.Role role = handlerMethod.getMethodAnnotation(AUTH.Role.class);
-        if (function == null && role == null) {
-            return true;
+        if (StringUtils.isEmpty(AUTH_CONTEXT.getCurrentUser())) {
+            if (function == null && role == null && requireLogin == null)
+                return true;
+            else {
+                Util.report("--------------------------访问禁止----------------------------------");
+                try {
+                    response.setContentType("application/json");
+                    PrintWriter writer = response.getWriter();
+                    writer.write("{\"code\":403,\"result\":\"访问禁止，用户未登录\"}");
+                    writer.flush();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                return false;
+            }
         }
+
+
         String[] functionKeys = (function == null ? null : function.value());
         String[] roleKeys = (role == null ? null : role.value());
         if (checkFunction(AUTH_CONTEXT.getCurrentUser(), functionKeys) || checkRole(AUTH_CONTEXT.getCurrentUser(), roleKeys)) {
@@ -50,7 +64,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             try {
                 response.setContentType("application/json");
                 PrintWriter writer = response.getWriter();
-                writer.write("{\"code\":403,\"result\":\"访问禁止\"}");
+                writer.write("{\"code\":403,\"result\":\"访问禁止,访问受限\"}");
                 writer.flush();
             } catch (IOException e) {
                 throw new RuntimeException(e);
