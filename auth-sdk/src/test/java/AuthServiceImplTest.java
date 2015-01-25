@@ -6,6 +6,7 @@ import com.peaceful.auth.data.domain.JSONRole;
 import com.peaceful.auth.data.domain.JSONSystem;
 import com.peaceful.auth.data.domain.JSONUser;
 import com.peaceful.common.util.Util;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -136,5 +137,22 @@ public class AuthServiceImplTest {
         Util.report("resources size is " + service.getResourcesOfSystem().size());
     }
 
+
+    String res = "@{\"message\":\"下单成功\",\"data\":{\"bookingId\":\"b7056b75bdea0457a057151d3cb357de\",\"bookingType\":\"01003\",\"orderTime\":\"1421132083\",\"timeout\":\"90\"},\"code\":\"0\"}";
+
+    @Test
+    public void tes(){
+        res = res.substring(1,res.length());
+        Util.report(res);
+        com.alibaba.fastjson.JSONObject jsonObject = com.alibaba.fastjson.JSON.parseObject(res);
+        String code = (String) jsonObject.get("code");
+        System.out.print(code);
+    }
+
+    @Test
+    public void teas(){
+        int chari2;
+
+    }
 
 }

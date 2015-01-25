@@ -2,6 +2,7 @@ package com.peaceful.auth.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.peaceful.auth.Constant;
 import com.peaceful.auth.center.Service.*;
 import com.peaceful.auth.center.domain.*;
 import com.peaceful.auth.data.domain.JSONMenu;
@@ -123,8 +124,8 @@ public class AdminController {
             }
         }
         menu.roles = roles;
-        if (menu.parentMenu == null || menu.parentMenu.id==null)
-            menu.parentMenu=null;
+        if (menu.parentMenu == null || menu.parentMenu.id == null)
+            menu.parentMenu = null;
         try {
             menuService.insertMenu(menu);
             return JSON.toJSONString(new Response(1, BACK.MENUADDSUCCESS.defineState, LEVEL.INFO.name(), BACK.MENUADDSUCCESS.detailLog));
@@ -287,8 +288,8 @@ public class AdminController {
             return JSON.toJSONString(new Response(0, BACK.USERISEXIST.defineState, LEVEL.WARN.name(), BACK.USERISEXIST.detailLog));
         user.operator = getCurrentOperator(request);
         user.createTime = new Date();
-        user.password=md5PasswordEncoder.encodePassword("11111","woshinidaye");
-        user.passwordState=0;
+        user.password = md5PasswordEncoder.encodePassword(Constant.DEFAULT_PASSWORD, Constant.DEFAULT_PASSWORD_SALT);
+        user.passwordState = 0;
         DJSystem system = new DJSystem();
         system.id = systemId;
         user.system = system;
@@ -347,9 +348,9 @@ public class AdminController {
         }
         user.roles = roles;
         user.setOperator(getCurrentOperator(request));
-        DJUser user_ =  userService.findUserByUserId(user.id);
-        user.password=user_.password;
-        user.passwordState=user_.passwordState;
+        DJUser user_ = userService.findUserByUserId(user.id);
+        user.password = user_.password;
+        user.passwordState = user_.passwordState;
         try {
             userService.updateUser(user);
             return JSON.toJSONString(new Response(1, BACK.USERUPDATESUCCESS.defineState, LEVEL.INFO.name(), BACK.USERUPDATESUCCESS.detailLog));

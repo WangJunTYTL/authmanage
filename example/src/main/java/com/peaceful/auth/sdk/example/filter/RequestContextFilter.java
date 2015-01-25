@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by wangjun on 15/1/2.
  */
-public class RequestContextFilter  implements Filter {
+public class RequestContextFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -18,11 +18,11 @@ public class RequestContextFilter  implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String user  = (String) servletRequest.getAttribute(Contstant.CURRENT_USER);
-        if (StringUtils.isNotEmpty(user)){
+        String user = (String) servletRequest.getAttribute(Contstant.CURRENT_USER);
+        if (StringUtils.isNotEmpty(user)) {
             RequestContext.setCurrentUser(user);
         }
-        filterChain.doFilter(servletRequest,servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

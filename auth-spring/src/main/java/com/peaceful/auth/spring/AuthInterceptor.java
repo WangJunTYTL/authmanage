@@ -37,6 +37,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         AUTH.RequireLogin requireLogin = handlerMethod.getMethodAnnotation(AUTH.RequireLogin.class);
         AUTH.Function function = handlerMethod.getMethodAnnotation(AUTH.Function.class);
         AUTH.Role role = handlerMethod.getMethodAnnotation(AUTH.Role.class);
+
+        //对要求登录权限验证
         if (StringUtils.isEmpty(AUTH_CONTEXT.getCurrentUser())) {
             if (function == null && role == null && requireLogin == null)
                 return true;
@@ -54,27 +56,31 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             }
         }
 
-
         String[] functionKeys = (function == null ? null : function.value());
         String[] roleKeys = (role == null ? null : role.value());
-        if (checkFunction(AUTH_CONTEXT.getCurrentUser(), functionKeys) || checkRole(AUTH_CONTEXT.getCurrentUser(), roleKeys)) {
+        if (function == null && role == null) {
             return true;
         } else {
-            Util.report("--------------------------访问禁止----------------------------------");
-            try {
-                response.setContentType("application/json");
-                PrintWriter writer = response.getWriter();
-                writer.write("{\"code\":403,\"result\":\"访问禁止,访问受限\"}");
-                writer.flush();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if (checkFunction(AUTH_CONTEXT.getCurrentUser(), functionKeys) || checkRole(AUTH_CONTEXT.getCurrentUser(), roleKeys)) {
+                return true;
+            } else {
+                Util.report("--------------ss------------访问禁止----------------------------------");
+                try {
+                    response.setContentType("application/json");
+                    PrintWriter writer = response.getWriter();
+                    writer.write("{\"code\":403,\"result\":\"访问禁止,访问受限\"}");
+                    writer.flush();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                return false;
             }
-            return false;
         }
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView
+            modelAndView) throws Exception {
 
         super.postHandle(request, response, handler, modelAndView);
     }
