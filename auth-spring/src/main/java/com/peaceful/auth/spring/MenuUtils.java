@@ -71,6 +71,7 @@ public class MenuUtils extends TagSupport {
     }
 
     public static String getSecondLevelMenu(String menuKey, String otherAttr, String leftSpace) throws CreateSessionException {
+
         if (StringUtils.isEmpty(otherAttr) && StringUtils.isEmpty(leftSpace)) {
             getSecondLevelMenu(menuKey);
         }
@@ -97,6 +98,8 @@ public class MenuUtils extends TagSupport {
 
     @Override
     public int doStartTag() throws JspException {
+        if (AUTH_CONTEXT.getCurrentUser() == null)
+            return EVAL_BODY_INCLUDE;
         JspWriter out = this.pageContext.getOut();
         try {
             if (menuLevel.equals("L1") || menuLevel.equals("L2")) {

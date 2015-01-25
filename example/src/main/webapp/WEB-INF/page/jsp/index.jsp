@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="menu" uri="http://com.peaceful.com/nuggets/auth/menu" %>
 
 <!DOCTYPE html>
 <html>
@@ -72,6 +73,11 @@
         <li><a href="/sys">查看系统在权限中心配置的信息【需要admin角色或拥有getSysInfo功能】</a></li>
         <li><a href="/guest">客人【需要guest角色】</a></li>
     </ol>
+    <div class="text-muted">如果你没有配置上述那些角色信息，请先运行./example/docs/xx.sql</div>
+    <h5 class="page-header">扩展通过jstl获取菜单【当你登录时，可以发现你拥有的功能点将会出现在下方,这一部分需要你自己参照MenuUtils的写法去扩展自己的菜单样式】</h5>
+    <div>
+        <menu:menu menuKey="me" menuLevel="L1"></menu:menu>
+    </div>
 </div>
 <script src="/js/formvalid/jquery.validate.js"></script>
 <script src="/js/formvalid/peaceful.form.js"></script>
