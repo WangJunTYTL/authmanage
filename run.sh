@@ -19,25 +19,15 @@ echo '----------------------------------------------'
 [ ! -n `which git` ] && "请先安装git，并添加git到path变量中"  && exit 1
 
 #下载依赖包，最好手动将依赖包install到你的本地仓库
-[ ! -d "peaceful-parent" ] && echo "下载依赖包" && git clone git@github.com:WangJunTYTL/peaceful-parent.git
-[ ! -d "peaceful-common-utils" ] && git clone git@github.com:WangJunTYTL/peaceful-common-utils.git
+[ ! -d "peaceful-basic-platform" ] && echo "下载依赖包" && git clone git@github.com:WangJunTYTL/peaceful-basic-platform.git
 
+cd peaceful-basic-platform
+mvn clean -P${ENV} install -o  -Dmaven.test.skip=true
+cd ..
+
+rm -rf peaceful-basic-platform
 
 mvn -P${ENV} clean compile -o -Dmaven.test.skip=true
-
-cd peaceful-parent
-mvn -P${ENV} install -o  -Dmaven.test.skip=true
-cd ..
-
-
-cd peaceful-common-utils
-mvn -P${ENV} install -o  -Dmaven.test.skip=true
-cd ..
-
-rm -rf peaceful-parent
-rm -rf peaceful-common-utils
-
-
 cd auth-data-protocol
 mvn -P${ENV} install -o  -Dmaven.test.skip=true
 cd ..
