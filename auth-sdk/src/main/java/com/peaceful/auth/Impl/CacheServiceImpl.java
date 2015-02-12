@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 基于 ehcache 框架实现缓存，处理从权限中心读取配置信息，然后缓存到用户服务器
+ * <p/>
  * Created by WangJun on 14-4-20.
  */
 public class CacheServiceImpl implements CacheService {
@@ -26,6 +28,7 @@ public class CacheServiceImpl implements CacheService {
                 cache = cacheManager.getCache("userQuery");
             }
         } catch (Exception e) {
+            //当使用热部署编译时，会引起ehcache抛出shutdown异常，该问题是在利用sbt构建时发现
             logger.error("注意：权限系统检测到你正在使用热部署方式编译,缓存系统在你热部署时自动重启，缓存的数据将会被清除");
             cacheManager = CacheManager.create();
             cache = cacheManager.getCache("userQuery");

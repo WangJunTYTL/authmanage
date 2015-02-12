@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 基于httpClient 实现sdk 与 权限中心通信
+ * <p/>
  * Date 14-9-28.
  * Author WangJun
  * Email wangjuntytl@163.com
@@ -49,12 +51,12 @@ public class HttpUtils {
                 e.printStackTrace();
             }
         }
-        logger.debug("get url is {} response data is {}",url,result);
-        return result==null?"":result.trim();
+        logger.debug("get url is {} response data is {}", url, result);
+        return result == null ? "" : result.trim();
     }
 
 
-    public static  String post(String url, Map<String, String> data) {
+    public static String post(String url, Map<String, String> data) {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
@@ -82,13 +84,13 @@ public class HttpUtils {
                 e.printStackTrace();
             }
         }
-        logger.debug("post url is {} response data is {}",url,result);
-        return result==null?"":result.trim();
+        logger.debug("post url is {} response data is {}", url, result);
+        return result == null ? "" : result.trim();
 
     }
 
 
-    public static  String get(String url, Map<String, String> data) {
+    public static String get(String url, Map<String, String> data) {
         return null;
     }
 

@@ -1,6 +1,8 @@
 package com.peaceful.auth.api;
 
 /**
+ * 缓存接口
+ *
  * Created by WangJun on 14-4-20.
  */
 public interface CacheService {
