@@ -15,7 +15,7 @@ auth manage
 ## 项目文档
 
 * [项目介绍](http://wangjuntytl.github.io/project.html)
-* [api](http://wangjuntytl.github.io/project.html)
+* [api](http://wangjuntytl.github.io/apidocs/)
 
 ## 安装与运行
 
