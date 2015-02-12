@@ -16,24 +16,22 @@ import java.util.List;
  */
 public interface AuthService {
     /**
-     * 所有有关于你系统的有效配置信息，这些配置都是未被注销的，比如返回的JSONSystem，对象system.roles 是所有未被注销的角色，
-     * 而role 对象下是所有未被注销的菜单，用户
+     * 获取你系统的全部有效(没有下线的)配置信息
      *
-     * @return JSONSystem
+     * @return  JSONSystem
      */
     JSONSystem getSystem();
 
 
     /**
-     * 所有关于当前用户的所有配置信息
+     * 获取指定用户的全部有效(没有下线的)配置信息
      *
      * @param email
-     * @return
      */
     JSONUser getUser(String email);
 
     /**
-     * 根据当前用户渲染菜单，该方法已弃用，鼓励自己拿到菜单对象后自己实现渲染效果
+     * 根据指定用户渲染菜单（即生成一段html标记语言），该方法已弃用，为了更灵活的生成菜单样式，建议自己去实现生成html
      *
      * @param menukey
      * @param attribute
@@ -63,7 +61,7 @@ public interface AuthService {
     boolean requestCheck(String url, String email);
 
     /**
-     * 清除当前用户的数据（这些数据是用户登陆到你自己系统上留下的数据）
+     * 清除当前用户的数据（这些数据是用户在你自己系统上缓存的数据）
      *
      * @param email
      */
@@ -71,7 +69,7 @@ public interface AuthService {
 
 
     /**
-     * 统一验证大街账号、密码
+     * 统一验证账号、密码
      *
      * @param email
      * @param password
@@ -118,24 +116,21 @@ public interface AuthService {
 
 
     /**
-     * 得到系统内所有的菜单信息，请注意本方法取得的数据不会被缓存，因为它只会在你配置权限信息时才会用到该部分信息，
-     * 如果你想取到当前有意义（未被注销，且和角色已经建立关系）的菜单请用getSystem拿到全局有效的配置信息
+     * 得到系统内所有的（包括下线的）菜单信息，请注意本方法取得的数据不会被缓存
      *
      * @return
      */
     List<JSONMenu> getMenusOfSystem();
 
     /**
-     * 得到系统内所有的角色信息，请注意本方法取得的数据不会被缓存，因为它只会在你配置权限信息时才会用到该部分信息，
-     * 如果你想取到当前有意义（未被注销，且和角色已经建立关系）的菜单请用getSystem拿到全局有效的配置信息
+     * 得到系统内所有的（包括下线的）角色信息，请注意本方法取得的数据不会被缓存，
      *
      * @return
      */
     List<JSONRole> getRolesOfSystem();
 
     /**
-     * 得到系统内所有的用户信息，请注意本方法取得的数据不会被缓存，因为它只会在你配置权限信息时才会用到该部分信息，
-     * 如果你想取到当前有意义（未被注销，且和角色已经建立关系）的用户请用getSystem拿到全局有效的配置信息
+     * 得到系统内所有的（包括下线的）用户信息，请注意本方法取得的数据不会被缓存
      *
      * @return
      */
@@ -143,8 +138,7 @@ public interface AuthService {
 
 
     /**
-     * 得到系统内所有的用户信息，请注意本方法取得的数据不会被缓存，因为它只会在你配置权限信息时才会用到该部分信息，
-     * 如果你想取到当前有意义（未被注销，且和角色已经建立关系）的资源请用getSystem拿到全局有效的配置信息
+     * 得到系统内所有的（包括下线的）资源信息，请注意本方法取得的数据不会被缓存
      *
      * @return
      */
