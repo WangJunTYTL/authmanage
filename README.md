@@ -44,19 +44,21 @@ auth manage
     #sdk包与权限中心建立连接，需要知道权限中心的位置
     auth.service.address=http://10.10.1.110:8080
     #user info 缓存时间
-    #第一次通过getUser()获取用户权限信息时，会把配置信息缓存在客户端的服务器，之后会在缓存中获取，如果缓存失效，会再次请求权限中心
+    #第一次通过getUser()获取用户权限信息时，会把配置信息缓存在客户端的服务器，之后会在缓存中获取
+    #如果缓存失效，会再次请求权限中心
     auth.user.session.out.time=2
     #system info 缓存时间 ，目的同上
     auth.system.session.out.time=300
     #实现AuthContext抽象类的路径
     #这个是可选配置，只有当你引入auth-spring包时才会使用到这个配置，
-    #当服务启动时会实例化指定包路径类的对象，然后sdk将通过AuthContext实例拿取一些必要的上下文信息，比如每次请求用户名是什么
+    #当服务启动时会实例化指定包路径类的对象，然后sdk将通过AuthContext实例拿取一些必要的上下文信息,比如每次请求用户名是什么
     auth.context.impl.class=xxx
 
 
 ##### 获得服务
     AuthService authService = AuthServiceImpl.getAuthService();
-    #这是通过sdk包与权限中心建立服务的唯一入口，当启动后，sdk会读取auth.properties去服务中心校验是否注册服务，如果存在注册信息将返回一个可用的服务实例
+    #这是通过sdk包与权限中心建立服务的唯一入口，当启动后，sdk会读取auth.properties去服务中心校验是否注册服务
+    #如果存在注册信息将返回一个可用的服务实例,否则将会抛出未在权限中心注册服务异常
 
 ##### 两个主要服务接口
 
@@ -68,6 +70,15 @@ auth manage
 数据会缓存在客户端的服务器，你也没必要担心缓存数据过时问题，因为客户端会实时监测服务中心数据配置的变化，若有变化，客户端会立即重新加载缓存
 
 ## 扩展
+
+sdk包当前只支持java，除了依赖Ehcache包为了实现客户端的缓存外，不依赖任何第三方包，所以只要
+你当前的开发语言可以和java语言相互调用就可以使用你的系统，比如当前我们把sdk包用在spring编写
+的项目和scala编写的项目当中，实际运行中表现非常稳定。由于各个客户端的或者各个公司平台的差异性，
+可能需要你作出一些必要的扩展，目的是保证sdk包可以适用于更多的架构同时也保证你们在基于sak开发包时
+可以简单方便的去扩展.当前提供的auth-spring包是适用于spring mvc架构的扩展，扩展主要内容是客户端可以
+通过springmvc HandlerInterceptorAdapter 拦截所有请求，然后通过检查controller上的注解决定动作的执行方向
+另外，通过实现authContext，客户端通过jstl标签每次为用户渲染视图时，都会检查当前登录用户，根据用户身份渲染不同的菜单
+
 
 ### 客户端支持jstl表达式
 
