@@ -74,6 +74,7 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
         Util.report(publicServiceURL.success_init_info);
     }
 
+    //得到服务端数据版本号
     private String getVCSNum() {
         Element element = (Element) CACHE_SERVICE.get("vcs");
         String vcsNum = null;
@@ -89,7 +90,7 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
     public JSONSystem getSystem() {
         Element element = null;
         String vcsNum = getVCSNum();
-        if (vcsNum.equals("" + VCS.getCurrentVersion()))
+        if (vcsNum.compareTo("" + VCS.getCurrentVersion()) > 0)
             element = (Element) CACHE_SERVICE.get("system");
         else {
             CACHE_SERVICE.clearAll();
@@ -114,7 +115,7 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
     public JSONUser getUser(String email) {
         Element element = null;
         String vcsNum = getVCSNum();
-        if (vcsNum.equals("" + VCS.getCurrentVersion())) {
+        if (vcsNum.compareTo("" + VCS.getCurrentVersion()) > 0) {
             element = (Element) CACHE_SERVICE.get(email);
         } else {
             CACHE_SERVICE.clearAll();
