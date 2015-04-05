@@ -1,8 +1,8 @@
 package com.peaceful.auth.api;
 
 import com.peaceful.auth.constant.GlobleConstant;
-import com.peaceful.common.util.AppConfigs;
-import com.peaceful.common.util.impl.AppConfigsImpl;
+import com.peaceful.auth.util.AppConfigs;
+import com.peaceful.auth.util.AppConfigsImpl;
 
 /**
  * Created by wangjun on 14-8-12.
@@ -58,9 +58,6 @@ public final class PublicServiceURL {
         find_resources = codes_prefix + "/getResources.do?systemId=" + system_id;// 所有资源
 
     }
-
-
-
 
 
 }

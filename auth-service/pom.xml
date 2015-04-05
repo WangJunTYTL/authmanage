@@ -149,10 +149,6 @@
             <artifactId>ehcache-core</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.peaceful</groupId>
-            <artifactId>peaceful-common-utils</artifactId>
-        </dependency>
 
     </dependencies>
 

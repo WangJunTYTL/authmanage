@@ -9,10 +9,10 @@ import com.peaceful.auth.data.VCS;
 import com.peaceful.auth.data.domain.*;
 import com.peaceful.auth.data.response.Response;
 import com.peaceful.auth.util.HttpUtils;
-import com.peaceful.common.util.StringUtils;
-import com.peaceful.common.util.Util;
-import com.peaceful.common.util.exception.LoadPropertiesException;
+import com.peaceful.auth.util.LoadPropertiesException;
+import com.peaceful.auth.util.Util;
 import net.sf.ehcache.Element;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

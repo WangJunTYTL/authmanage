@@ -2,7 +2,7 @@ package com.peaceful.auth.sdk.example.filter;
 
 import com.peaceful.auth.sdk.example.other.Contstant;
 import com.peaceful.auth.sdk.example.other.RequestContext;
-import com.peaceful.common.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
 import java.io.IOException;

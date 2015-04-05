@@ -2,7 +2,6 @@ package com.peaceful.auth.center.daoImpl;
 
 import com.peaceful.auth.center.domain.*;
 import com.peaceful.auth.center.dao.UserDao;
-import com.peaceful.common.util.Util;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +34,7 @@ public class UserDaoImpl implements UserDao {
 
     public DJUser findUserByUserId(Integer id) {
         DJUser user = (DJUser) sessionFactory.getCurrentSession().get(DJUser.class, id);
-        Util.report("eager load roles :" + user.roles.size());
+        logger.info("eager load roles :" + user.roles.size());
         if (user.system != null) {
             logger.info("load system id is {}", user.system.id);
         }
