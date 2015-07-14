@@ -43,7 +43,6 @@ public class ResourceServiceImpl implements ResourceService {
         resourceDao.inserte(resource);
     }
 
-    @Override
     public DJResource findResourceByResourceUrl(String url, Integer systemId) {
         return resourceDao.findResourceByResourceUrl(url,systemId);
     }

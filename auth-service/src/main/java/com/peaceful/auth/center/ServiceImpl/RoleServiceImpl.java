@@ -31,7 +31,6 @@ public class RoleServiceImpl implements RoleService {
         return roleDao.findRoleById(id);
     }
 
-    @Override
     public DJRole findRoleByRoleId(Integer roleId, Integer casecadeType) {
         DJRole role = roleDao.findRoleById(roleId);
         HibernateRoleUtil.load(role,casecadeType);
@@ -44,7 +43,6 @@ public class RoleServiceImpl implements RoleService {
 
     }
 
-    @Override
     public DJRole findRoleByName(String name, Integer systemId) {
         return roleDao.findRoleByName(name,systemId);
     }

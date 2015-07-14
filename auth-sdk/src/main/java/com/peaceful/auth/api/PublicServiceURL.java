@@ -1,6 +1,6 @@
 package com.peaceful.auth.api;
 
-import com.peaceful.auth.constant.GlobleConstant;
+import com.peaceful.auth.constant.GlobalConstant;
 import com.peaceful.auth.util.AppConfigs;
 import com.peaceful.auth.util.AppConfigsImpl;
 
@@ -34,10 +34,10 @@ public final class PublicServiceURL {
 
     public PublicServiceURL() {
         AppConfigs MY_APP_CONFIGS = AppConfigsImpl.getMyAppConfigs("auth.properties");
-        user_session_out_time = MY_APP_CONFIGS.getString(GlobleConstant.USER_SESSION_OUT_TIME);
-        system_session_out_time = MY_APP_CONFIGS.getString(GlobleConstant.SYSTEM_SESSION_OUT_TIME);
-        system_id = MY_APP_CONFIGS.getString(GlobleConstant.SYSTEM_ID);
-        service_address = MY_APP_CONFIGS.getString(GlobleConstant.AUTH_SERVICE_ADDRESS); //服务地址
+        user_session_out_time = MY_APP_CONFIGS.getString(GlobalConstant.USER_SESSION_OUT_TIME);
+        system_session_out_time = MY_APP_CONFIGS.getString(GlobalConstant.SYSTEM_SESSION_OUT_TIME);
+        system_id = MY_APP_CONFIGS.getString(GlobalConstant.SYSTEM_ID);
+        service_address = MY_APP_CONFIGS.getString(GlobalConstant.AUTH_SERVICE_ADDRESS); //服务地址
         codes_prefix = service_address;
         help_doc = codes_prefix + "/help.do";
         success_init_info = "AuthService  be successfully initialized. See " + help_doc + " for more information";

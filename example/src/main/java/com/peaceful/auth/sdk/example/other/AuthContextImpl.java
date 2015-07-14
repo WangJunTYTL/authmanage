@@ -1,7 +1,7 @@
 package com.peaceful.auth.sdk.example.other;
 
 import com.peaceful.auth.spring.AuthContext;
-import com.peaceful.web.util.Http;
+import com.peaceful.common.util.Http;
 
 /**
  * 为了可以让权限中心知道当前你系统的登录用户，需要实现AuthContext

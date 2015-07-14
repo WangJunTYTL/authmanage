@@ -7,7 +7,7 @@ import com.peaceful.auth.sdk.example.other.Contstant;
 import com.peaceful.auth.sdk.example.other.RequestContext;
 import com.peaceful.auth.sdk.example.outer.api.AuthApi;
 import com.peaceful.auth.spring.AUTH;
-import com.peaceful.web.util.Http;
+import com.peaceful.common.util.Http;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;

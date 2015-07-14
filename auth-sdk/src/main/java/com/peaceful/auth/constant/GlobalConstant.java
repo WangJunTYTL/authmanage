@@ -5,7 +5,7 @@ package com.peaceful.auth.constant;
  * <p/>
  * Created by wj on 14-4-23.
  */
-public class GlobleConstant {
+public class GlobalConstant {
     /**
      * 在权限中心注册服务id
      */
