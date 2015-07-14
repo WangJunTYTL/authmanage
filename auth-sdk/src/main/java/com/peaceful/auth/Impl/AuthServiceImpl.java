@@ -90,7 +90,7 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
     public JSONSystem getSystem() {
         Element element = null;
         String vcsNum = getVCSNum();
-        if (vcsNum.compareTo("" + VCS.getCurrentVersion()) > 0)
+        if (vcsNum.compareTo("" + VCS.getCurrentVersion()) <= 0)
             element = (Element) CACHE_SERVICE.get("system");
         else {
             CACHE_SERVICE.clearAll();
@@ -115,7 +115,7 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
     public JSONUser getUser(String email) {
         Element element = null;
         String vcsNum = getVCSNum();
-        if (vcsNum.compareTo("" + VCS.getCurrentVersion()) > 0) {
+        if (vcsNum.compareTo("" + VCS.getCurrentVersion()) <= 0) {
             element = (Element) CACHE_SERVICE.get(email);
         } else {
             CACHE_SERVICE.clearAll();
