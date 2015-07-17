@@ -22,4 +22,5 @@ public class GlobalConstant {
      * 获取系统信息时缓存时间
      */
     public static final String SYSTEM_SESSION_OUT_TIME = "auth.system.session.out.time";
+    public static final String CLIENT_CACHE_VALID_TIME = "auth.client.cache.valid.time";
 }

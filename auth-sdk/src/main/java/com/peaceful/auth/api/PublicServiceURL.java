@@ -10,6 +10,7 @@ import com.peaceful.auth.util.AppConfigsImpl;
 public final class PublicServiceURL {
 
     public java.lang.String user_session_out_time = null;
+    public java.lang.String client_cache_valid_time = null;
     public java.lang.String system_session_out_time = null;
     public java.lang.String system_id = null;
     public java.lang.String service_address = null;
@@ -36,6 +37,7 @@ public final class PublicServiceURL {
         AppConfigs MY_APP_CONFIGS = AppConfigsImpl.getMyAppConfigs("auth.properties");
         user_session_out_time = MY_APP_CONFIGS.getString(GlobalConstant.USER_SESSION_OUT_TIME);
         system_session_out_time = MY_APP_CONFIGS.getString(GlobalConstant.SYSTEM_SESSION_OUT_TIME);
+        client_cache_valid_time = MY_APP_CONFIGS.getString(GlobalConstant.CLIENT_CACHE_VALID_TIME);
         system_id = MY_APP_CONFIGS.getString(GlobalConstant.SYSTEM_ID);
         service_address = MY_APP_CONFIGS.getString(GlobalConstant.AUTH_SERVICE_ADDRESS); //服务地址
         codes_prefix = service_address;

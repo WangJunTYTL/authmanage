@@ -82,7 +82,7 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
             vcsNum = (String) element.getObjectValue();
         if (StringUtils.isEmpty(vcsNum)) {
             vcsNum = HttpUtils.get(publicServiceURL.find_vcs);
-            CACHE_SERVICE.put("vcs", vcsNum, 2);
+            CACHE_SERVICE.put("vcs", vcsNum, Integer.parseInt(publicServiceURL.client_cache_valid_time));
         }
         return vcsNum;
     }
@@ -101,7 +101,7 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
             String result = HttpUtils.get(publicServiceURL.system_info);
             try {
                 system = JSON.parseObject(result, JSONSystem.class);
-                CACHE_SERVICE.put("system", system, Integer.parseInt(publicServiceURL.system_session_out_time == null ? publicServiceURL.user_session_out_time : publicServiceURL.system_session_out_time));
+                CACHE_SERVICE.put("system", system, 686868);
             } catch (Exception e) {
                 LOGGER.error("解析数据错误:{}", e);
             }
@@ -133,7 +133,7 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
                 try {
                     user = JSON.parseObject(result, JSONUser.class);
                     LOGGER.debug("{} has auth  is {}", email, result);
-                    CACHE_SERVICE.put(email, user, Integer.parseInt(publicServiceURL.user_session_out_time));
+                    CACHE_SERVICE.put(email, user, 686868);
                 } catch (Exception e) {
                     LOGGER.error("数据解析错误:\n" + e);
                 }
