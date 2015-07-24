@@ -30,7 +30,7 @@ cmd_is_exist(){
     if [ $? == 0 ];then
         echo "OK"
     else
-        echo "请先安装$1，并添加mvn到path变量中" && exit 1
+        echo "请先安装$1，并添加$1到PATH变量中" && exit 1
     fi
 }
 
@@ -39,7 +39,7 @@ cmd_is_exist "git"
 echo '----------------------------------------------'
 
 wait
-echo "下载依赖包并开始构建 ..."
+echo "准备下载依赖包并开始构建 ..."
 
 #下载依赖包，最好手动将依赖包install到你的本地仓库
 [ ! -d "peaceful-basic-platform" ]   && git clone https://github.com/WangJunTYTL/peaceful-basic-platform.git
