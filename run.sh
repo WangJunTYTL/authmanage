@@ -14,11 +14,11 @@ echo '----------------------------------------------'
 echo "构建环境：${ENV}"
 echo '----------------------------------------------'
 
-_r=`which mvn`
+_r="`which mvn`"
 __r=$?
 echo 'check mvn cmd... '${_r}
 [ ${__r} != 0 ] && "请先安装maven，并添加mvn到path变量中" && exit 1
--r=`which git`
+_r="`which git`"
 __r=$?
 echo 'check git cmd... '${_r}
 [ ${__r} != 0 ] && "请先安装git，并添加git到path变量中"  && exit 1
