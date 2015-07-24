@@ -14,13 +14,13 @@ echo '----------------------------------------------'
 echo "构建环境：${ENV}"
 echo '----------------------------------------------'
 
+echo 'check mvn cmd... '
 _r="`which mvn`"
 __r=$?
-echo 'check mvn cmd... '${_r}
 [ ${__r} != 0 ] && "请先安装maven，并添加mvn到path变量中" && exit 1
+echo 'check git cmd... '
 _r="`which git`"
 __r=$?
-echo 'check git cmd... '${_r}
 [ ${__r} != 0 ] && "请先安装git，并添加git到path变量中"  && exit 1
 
 #下载依赖包，最好手动将依赖包install到你的本地仓库
