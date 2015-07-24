@@ -17,11 +17,11 @@ echo '----------------------------------------------'
 echo 'check mvn cmd... '
 _r="`which mvn`"
 __r=$?
-[ ${__r} != 0 ] && "请先安装maven，并添加mvn到path变量中" && exit 1
+[ ${__r} != 0 ] && echo "请先安装maven，并添加mvn到path变量中" && exit 1
 echo 'check git cmd... '
 _r="`which git`"
 __r=$?
-[ ${__r} != 0 ] && "请先安装git，并添加git到path变量中"  && exit 1
+[ ${__r} != 0 ] && echo "请先安装git，并添加git到path变量中"  && exit 1
 
 #下载依赖包，最好手动将依赖包install到你的本地仓库
 [ ! -d "peaceful-basic-platform" ]   && git clone https://github.com/WangJunTYTL/peaceful-basic-platform.git && echo "下载依赖包"
