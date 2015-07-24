@@ -1,10 +1,19 @@
 #!/bin/bash
 #========================
-#create by WangJun
-#date 2014-11-06
-#email wangjuntytl@163.com
-#=============================
-#desc build and run app
+# create by WangJun
+# date 2014-11-06
+# email wangjuntytl@163.com
+#
+# =============================
+#
+# 描述：构建脚本
+#
+# 如果你的开发平台是window，需要手动执行以下步骤
+#   1. git clone https://github.com/WangJunTYTL/peaceful-basic-platform.git
+#   2. 进入clone 目录 ，执行 mvn install  -Dmaven.test.skip=true
+#   3. 跳出进入authmanage 目录，执行 mvn install  -Dmaven.test.skip=true
+#   4. 切入到auth-web 执行 mvn jetty:run [注意请先配置你的数据库]
+#   5，访问 127.0.0.1:8888
 #==================================
 
 source /etc/profile
