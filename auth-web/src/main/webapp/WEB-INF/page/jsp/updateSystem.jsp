@@ -53,6 +53,12 @@
                             <span class="input-group-addon">描述</span>
                             <input type="text" class="form-control" placeholder="简单描述下这个系统" name="description" value="${system.description}">
                         </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">秘钥</span>
+                            <input type="text" class="form-control" placeholder="SDK与服务中心通信秘钥，系统会自动生成" name="secret" value="${system.secret}" readonly>
+                        </div>
+
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <c:choose>
                             <c:when test="${empty system}">

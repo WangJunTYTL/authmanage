@@ -42,9 +42,9 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
         if (INITIALIZATION_STATE == SUCCESSFUL_INITIALIZATION) {
             return SingletonHolder.authService;
         }
-        Util.report("-----------------------------------------------------------------");
-        Util.report("init auth service");
-        Util.report("-----------------------------------------------------------------");
+        LOGGER.info("-----------------------------------------------------------------");
+        LOGGER.info("init auth service");
+        LOGGER.info("-----------------------------------------------------------------");
         try {
             publicServiceURL = new PublicServiceURL();
         } catch (LoadPropertiesException e) {
@@ -70,8 +70,8 @@ public class AuthServiceImpl implements com.peaceful.auth.api.AuthService {
     }
 
     private AuthServiceImpl() {
-        Util.report(formatOut());
-        Util.report(publicServiceURL.success_init_info);
+        LOGGER.info(formatOut());
+        LOGGER.info(publicServiceURL.success_init_info);
     }
 
     //得到服务端数据版本号

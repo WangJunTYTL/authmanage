@@ -1,5 +1,6 @@
 package com.peaceful.auth.center.domain;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +18,7 @@ public class DJSystem implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer id;
     public String name;
+    public String secret;
     public String operator;
     public String description;
 
@@ -74,6 +76,14 @@ public class DJSystem implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 
     public String getWebIndex() {

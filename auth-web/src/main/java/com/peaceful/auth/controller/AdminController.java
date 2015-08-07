@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.peaceful.auth.Constant;
 import com.peaceful.auth.center.Service.*;
 import com.peaceful.auth.center.domain.*;
+import com.peaceful.auth.data.MD5Utils;
 import com.peaceful.auth.data.domain.JSONMenu;
 import com.peaceful.auth.util.*;
 import org.apache.commons.lang3.StringUtils;
@@ -369,6 +370,7 @@ public class AdminController {
         DJAdministrator administrator = getCurrentAdministrator(request);
         system.setOperator(administrator.getName());
         system.createTime = new Date();
+        system.secret = MD5Utils.string2MD5(String.valueOf(System.nanoTime()));
         try {
             systemService.insertSystem(system);
             return JSON.toJSONString(new Response(1, BACK.SYSTEMADDSUCCESS.defineState, LEVEL.INFO.name(), BACK.SYSTEMADDSUCCESS.detailLog));

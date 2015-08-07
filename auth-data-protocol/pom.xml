@@ -15,5 +15,13 @@
     <packaging>jar</packaging>
     <description>定义权限中心与auth-sdk数据交换格式</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.6</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 </project>
