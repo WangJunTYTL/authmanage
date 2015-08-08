@@ -9,12 +9,22 @@ import java.util.List;
  * Created by wangjun on 14-4-15.
  */
 public interface SystemDao {
-    abstract List<DJSystem> findAllSystems();
-    abstract DJSystem findSystemById(Integer id);
-    abstract DJSystem findLiveSystemById(Integer id);
-    abstract DJSystem findSystemByName(String name);
-    abstract void inserte(DJSystem system);
-    abstract void update(DJSystem system);
-    abstract void delate(DJSystem system);
+    List<DJSystem> findAllSystems();
+
+    DJSystem findSystemById(Integer id);
+
+    DJSystem findSystemByAppkay(String appkey);
+
+    DJSystem findSystemByAppkayAndSecret(String appkey, String secret);
+
+    DJSystem findLiveSystemById(Integer id);
+
+    DJSystem findSystemByName(String name);
+
+    void inserte(DJSystem system);
+
+    void update(DJSystem system);
+
+    void delate(DJSystem system);
 
 }

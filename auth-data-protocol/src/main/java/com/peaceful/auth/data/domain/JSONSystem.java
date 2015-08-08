@@ -10,6 +10,7 @@ import java.util.List;
 public class JSONSystem implements Serializable{
     public int id;
     public String name;
+    public String token;
     public List<JSONRole> roles = new ArrayList<JSONRole>();
 
     public int getId() {
@@ -22,6 +23,14 @@ public class JSONSystem implements Serializable{
 
     public String getName() {
         return name;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void setName(String name) {

@@ -149,6 +149,12 @@
             <artifactId>ehcache-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.peaceful</groupId>
+            <artifactId>nuggets-auth-data-protocol</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
 </project>

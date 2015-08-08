@@ -1,7 +1,7 @@
 package com.peaceful.auth.sdk.example.outer.api;
 
-import com.peaceful.auth.Impl.AuthServiceImpl;
-import com.peaceful.auth.api.AuthService;
+import com.peaceful.auth.sdk.Impl.AuthServiceImpl;
+import com.peaceful.auth.sdk.api.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

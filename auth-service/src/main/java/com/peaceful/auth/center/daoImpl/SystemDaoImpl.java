@@ -1,14 +1,12 @@
 package com.peaceful.auth.center.daoImpl;
 
 import com.peaceful.auth.center.dao.SystemDao;
-import com.peaceful.auth.center.domain.DJMenu;
-import com.peaceful.auth.center.domain.DJRole;
-import com.peaceful.auth.center.domain.DJSystem;
-import com.peaceful.auth.center.domain.DJUser;
+import com.peaceful.auth.center.domain.*;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import sun.security.provider.MD5;
 
 import java.util.*;
 
@@ -37,6 +35,24 @@ public class SystemDaoImpl implements SystemDao {
 
     public DJSystem findSystemById(Integer id) {
         return (DJSystem) sessionFactory.getCurrentSession().get(DJSystem.class, id);
+    }
+
+    @Override
+    public DJSystem findSystemByAppkay(String appkey) {
+        List result = sessionFactory.getCurrentSession().createQuery("from DJSystem where appkey = ?").setString(0, appkey).list();
+        if (result != null && result.size() > 0) {
+            return (DJSystem) result.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public DJSystem findSystemByAppkayAndSecret(String appkey, String secret) {
+        List<DJSystem> result = sessionFactory.getCurrentSession().createQuery("from DJSystem as a where a .appkey = ?  and a.secret = ?").setString(0, appkey).setString(1,secret).list();
+        if (result != null && result.size() > 0)
+            return result.get(0);
+        else
+            return null;
     }
 
     public DJSystem findLiveSystemById(Integer id) {
@@ -87,7 +103,6 @@ public class SystemDaoImpl implements SystemDao {
     }
 
     public void inserte(DJSystem system) {
-
         sessionFactory.getCurrentSession().save(system);
 
     }

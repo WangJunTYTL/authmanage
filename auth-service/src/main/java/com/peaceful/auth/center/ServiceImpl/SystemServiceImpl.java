@@ -5,7 +5,8 @@ import com.peaceful.auth.center.dao.SystemDao;
 import com.peaceful.auth.center.domain.DJMenu;
 import com.peaceful.auth.center.domain.DJRole;
 import com.peaceful.auth.center.domain.DJSystem;
-import com.peaceful.auth.util.HibernateSystemUtil;
+import com.peaceful.auth.data.util.MD5Utils;
+import com.peaceful.auth.center.util.HibernateSystemUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -27,6 +29,15 @@ public class SystemServiceImpl implements SystemService {
 
     public void setSystemDao(SystemDao systemDao) {
         this.systemDao = systemDao;
+    }
+
+    @Override
+    public Map<Integer, String> refreshTokensOfAllSystem() {
+        List<DJSystem> systems = systemDao.findAllSystems();
+        for (DJSystem system : systems) {
+            allTokens.put(system.getId(), system.token);
+        }
+        return allTokens;
     }
 
     public DJSystem findSystemByName(String name) {
@@ -100,11 +111,22 @@ public class SystemServiceImpl implements SystemService {
     }
 
     public void insertSystem(DJSystem system) {
+        system.setAppkey(MD5Utils.string2MD5(String.valueOf(System.nanoTime())));
         systemDao.inserte(system);
     }
 
     public DJSystem findSystemBySystemId(Integer systemId) {
         return systemDao.findSystemById(systemId);
+    }
+
+    @Override
+    public DJSystem findSystemByAppkey(String appkey) {
+        return systemDao.findSystemByAppkay(appkey);
+    }
+
+    @Override
+    public DJSystem findSystemByAppkeyAndSecret(String appkey, String secret) {
+        return systemDao.findSystemByAppkayAndSecret(appkey, secret);
     }
 
     public DJSystem findSystemBySystemId(Integer systemId, Integer loadType) {

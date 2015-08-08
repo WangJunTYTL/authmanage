@@ -4,14 +4,20 @@ import com.peaceful.auth.center.domain.DJMenu;
 import com.peaceful.auth.center.domain.DJRole;
 import com.peaceful.auth.center.domain.DJSystem;
 
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wangjun on 14-4-17.
  */
 public interface SystemService {
 
-    abstract DJSystem findSystemByName(String name);
+    Map<Integer,String> allTokens = new IdentityHashMap<Integer, String>();
+
+    Map<Integer,String> refreshTokensOfAllSystem();
+
+    DJSystem findSystemByName(String name);
 
     boolean systemIsExist(Integer systemId);
 
@@ -42,6 +48,10 @@ public interface SystemService {
     void insertSystem(DJSystem system);
 
     DJSystem findSystemBySystemId(Integer systemId);
+
+    DJSystem findSystemByAppkey(String appkey);
+
+    DJSystem findSystemByAppkeyAndSecret(String appkey, String secret);
 
     DJSystem findSystemBySystemId(Integer systemId, Integer loadType);
 

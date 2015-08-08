@@ -13,7 +13,7 @@
     <mvc:annotation-driven/>
 
     <!-- 注解扫描的包 -->
-    <context:component-scan base-package="com.peaceful.auth.controller"/>
+    <context:component-scan base-package="com.peaceful.auth.web.controller"/>
 
 
     <!-- 静态资源访问，方案1 -->

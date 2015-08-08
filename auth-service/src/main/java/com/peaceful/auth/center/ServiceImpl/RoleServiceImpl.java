@@ -4,7 +4,7 @@ import com.peaceful.auth.center.domain.DJRole;
 import com.peaceful.auth.center.Service.RoleService;
 import com.peaceful.auth.center.dao.RoleDao;
 import com.peaceful.auth.center.dao.SystemDao;
-import com.peaceful.auth.util.HibernateRoleUtil;
+import com.peaceful.auth.center.util.HibernateRoleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

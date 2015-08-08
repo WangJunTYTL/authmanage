@@ -1,14 +1,11 @@
 package com.peaceful.auth.sdk.example.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.peaceful.auth.api.AuthService;
-import com.peaceful.auth.sdk.example.domain.User;
+import com.peaceful.auth.sdk.api.AuthService;
 import com.peaceful.auth.sdk.example.other.Contstant;
-import com.peaceful.auth.sdk.example.other.RequestContext;
 import com.peaceful.auth.sdk.example.outer.api.AuthApi;
 import com.peaceful.auth.spring.AUTH;
 import com.peaceful.common.util.Http;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

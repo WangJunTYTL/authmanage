@@ -18,7 +18,9 @@ public class DJSystem implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer id;
     public String name;
+    public String appkey;
     public String secret;
+    public String token;
     public String operator;
     public String description;
 
@@ -78,12 +80,28 @@ public class DJSystem implements Serializable {
         this.description = description;
     }
 
+    public String getAppkey() {
+        return appkey;
+    }
+
+    public void setAppkey(String appkey) {
+        this.appkey = appkey;
+    }
+
     public String getSecret() {
         return secret;
     }
 
     public void setSecret(String secret) {
         this.secret = secret;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getWebIndex() {
