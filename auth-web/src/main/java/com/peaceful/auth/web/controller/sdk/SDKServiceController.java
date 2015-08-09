@@ -1,4 +1,4 @@
-package com.peaceful.auth.web.controller;
+package com.peaceful.auth.web.controller.sdk;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

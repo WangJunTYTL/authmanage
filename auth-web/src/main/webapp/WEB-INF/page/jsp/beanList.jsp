@@ -29,7 +29,7 @@
         <jsp:include page="/resources/pages/menus.jsp"></jsp:include>
         <div class="col-sm-10" role="main">
             <div class="bs-callout bs-callout-warning" id="jquery-required" style="margin-top: 30px;">
-                <h4>粒子管理>>查询粒子</h4>
+                <h4>因子管理>>查询因子</h4>
 
                 <div>
                     <c:choose>

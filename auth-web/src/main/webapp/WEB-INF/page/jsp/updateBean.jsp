@@ -35,22 +35,22 @@
         <jsp:include page="/resources/pages/modal.jsp"></jsp:include>
         <div class="col-sm-10" role="main">
             <div class="bs-callout bs-callout-warning" id="jquery-required" style="margin-top: 30px;">
-                <h4>粒子管理>>修改粒子</h4>
+                <h4>因子管理>>修改因子</h4>
                 <br>
 
                 <div>
                     <form action="/admin/update/bean.do" method="post">
                         <div class="input-group">
-                            <span class="input-group-addon">&nbsp;&nbsp;key</span>
-                            <input type="text" class="form-control" placeholder="你的粒子要有一个唯一的标识" name="beanKey"
-                                   value="${bean.beanKey}" required="true" message="粒子唯一标识是必须的">
+                            <span class="input-group-addon">&nbsp;key</span>
+                            <input type="text" class="form-control" placeholder="你的因子要有一个唯一的标识" name="beanKey"
+                                   value="${bean.beanKey}" required="true" message="因子唯一标识是必须的">
                         </div>
 
 
                         <div class="input-group">
                             <span class="input-group-addon">名字</span>
                             <input type="text" class="form-control" placeholder="角色名字" name="name" value="${bean.name}"
-                                   required="true" message="粒子名字是必须的">
+                                   required="true" message="因子名字是必须的">
                             <input type="hidden" class="form-control" placeholder="角色名字" name="id" value="${bean.id}">
                             <input type="hidden" class="form-control" placeholder="角色名字" name="systemId"
                                    value="${bean.system.id}">
@@ -62,7 +62,7 @@
 
                         <div class="input-group">
                             <span class="input-group-addon">对象</span>
-                            <input type="text" class="form-control" placeholder="粒子的对象" name="beans"
+                            <input type="text" class="form-control" placeholder="因子的对象" name="beans"
                                    value="${bean.beans}">
                         </div>
 

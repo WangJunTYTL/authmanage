@@ -37,12 +37,12 @@
             </li>
 
             <li class="active">
-                <a href="#">粒子管理</a>
+                <a href="#">因子管理</a>
                 <ul class="nav">
-                    <li id="navG"><a href="/admin/add/bean/pre.do">添加粒子</a>
+                    <li id="navG"><a href="/admin/add/bean/pre.do">添加因子</a>
                     </li>
                     <li id="navH"><a
-                            href="/admin/find/beans.do">查询粒子</a></li>
+                            href="/admin/find/beans.do">查询因子</a></li>
 
                 </ul>
             </li>
