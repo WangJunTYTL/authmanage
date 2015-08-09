@@ -10,6 +10,7 @@ import java.util.List;
 public class HibernateSystemUtil {
     public static final int USER = 0;
     public static final int FUNCTION = 1;
+    public static final int BEAN = 9;
     public static final int FUNCTIONANDPARENT = 8;
     public static final int RESOURCE = 2;
     public static final int ROLE = 3;
@@ -23,7 +24,7 @@ public class HibernateSystemUtil {
     }
 
     public static void load(DJSystem system, int... cascadeType) {
-        if(system == null) return;
+        if (system == null) return;
 
         for (int i : cascadeType) {
             switch (i) {
@@ -49,7 +50,7 @@ public class HibernateSystemUtil {
                     system.users.size();
                     system.functions.size();
                     system.resources.size();
-
+                    system.beans.size();
                     break;
                 }
                 case 5: {
@@ -57,6 +58,10 @@ public class HibernateSystemUtil {
                     if (system != null)
                         if (system.roles != null && system.roles.size() != 0)
                             system.roles.iterator().hasNext();
+                    break;
+                }
+                case 9: {
+                    system.beans.size();
                     break;
                 }
             }

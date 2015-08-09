@@ -41,6 +41,7 @@ public interface SystemService {
     List<DJSystem> findResourcesSortBySystem();
 
     List<DJSystem> findFunctionsSortBySystem();
+    List<DJSystem> findBeansSortBySystem();
 
 
     List<DJSystem> findAllSystems();

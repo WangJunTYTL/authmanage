@@ -70,7 +70,7 @@ public class AdminController {
     @ResponseBody
     public String insertAdministrator(DJAdministrator administrator, HttpServletRequest request) {
         try {
-            administrator.setOperator(getCurrentOperator(request));
+            administrator.setOperator(ControllerUtil.getCurrentOperator(request));
             administratorService.inserte(administrator);
         } catch (Exception e) {
             return "fail";
@@ -82,7 +82,7 @@ public class AdminController {
     @ResponseBody
     public String updateAdministrator(DJAdministrator administrator, HttpServletRequest request) {
         try {
-            administrator.setOperator(getCurrentOperator(request));
+            administrator.setOperator(ControllerUtil.getCurrentOperator(request));
             administratorService.update(administrator);
         } catch (Exception e) {
             return "fail";
@@ -112,7 +112,7 @@ public class AdminController {
         DJFunction test = functionService.findFunctionByFunctionkey(function.functionKey, systemId);
         if (test != null)
             return JSON.toJSONString(new Response(0, BACK.FUNCTIONISEXIST.code, LEVEL.WARN.name(), BACK.FUNCTIONISEXIST.result));
-        function.operator = getCurrentOperator(request);
+        function.operator = ControllerUtil.getCurrentOperator(request);
         function.createTime = new Date();
         DJSystem system = new DJSystem();
         system.id = systemId;
@@ -179,7 +179,7 @@ public class AdminController {
             }
         }
         function.roles = roles;
-        function.setOperator(getCurrentOperator(request));
+        function.setOperator(ControllerUtil.getCurrentOperator(request));
         try {
             if (function.parentFunction != null && function.parentFunction.id != null) {
                 DJFunction function_ = functionService.findFunctionByFunctionId(function.parentFunction.id);
@@ -209,7 +209,7 @@ public class AdminController {
         DJResource test = resourceService.findResourceByResourceUrl(resource.pattern, systemId);
         if (test != null)
             return JSON.toJSONString(new Response(0, BACK.RESOURCEISEXIST.code, LEVEL.WARN.name(), BACK.RESOURCEISEXIST.result));
-        resource.operator = getCurrentOperator(request);
+        resource.operator = ControllerUtil.getCurrentOperator(request);
         resource.createTime = new Date();
         DJSystem system = new DJSystem();
         system.id = systemId;
@@ -266,7 +266,7 @@ public class AdminController {
             roles.add(role);
         }
         resource.roles = roles;
-        resource.setOperator(getCurrentOperator(request));
+        resource.setOperator(ControllerUtil.getCurrentOperator(request));
         try {
             resourceService.updateResource(resource);
             return JSON.toJSONString(new Response(1, BACK.RESOURCEUPDATESUCCESS.code, LEVEL.INFO.name(), BACK.RESOURCEUPDATESUCCESS.result));
@@ -288,7 +288,7 @@ public class AdminController {
         DJUser test = userService.findUserByUserName(user.email, systemId);
         if (test != null)
             return JSON.toJSONString(new Response(0, BACK.USERISEXIST.code, LEVEL.WARN.name(), BACK.USERISEXIST.result));
-        user.operator = getCurrentOperator(request);
+        user.operator = ControllerUtil.getCurrentOperator(request);
         user.createTime = new Date();
         user.password = md5PasswordEncoder.encodePassword(Constant.DEFAULT_PASSWORD, Constant.DEFAULT_PASSWORD_SALT);
         user.passwordState = 0;
@@ -349,7 +349,7 @@ public class AdminController {
             }
         }
         user.roles = roles;
-        user.setOperator(getCurrentOperator(request));
+        user.setOperator(ControllerUtil.getCurrentOperator(request));
         DJUser user_ = userService.findUserByUserId(user.id);
         user.password = user_.password;
         user.passwordState = user_.passwordState;
@@ -368,7 +368,7 @@ public class AdminController {
         DJSystem test = systemService.findSystemByName(system.name);
         if (test != null)
             return JSON.toJSONString(new Response(0, BACK.SYSTEMISEXIST.code, LEVEL.WARN.name(), BACK.SYSTEMISEXIST.result));
-        DJAdministrator administrator = getCurrentAdministrator(request);
+        DJAdministrator administrator = ControllerUtil.getCurrentAdministrator(request);
         system.setOperator(administrator.getName());
         system.createTime = new Date();
         system.secret = MD5Utils.string2MD5(String.valueOf(System.nanoTime()));
@@ -401,7 +401,7 @@ public class AdminController {
     @ResponseBody
     public String updateSystem(DJSystem system, HttpServletRequest request) {
         try {
-            system.setOperator(getCurrentOperator(request));
+            system.setOperator(ControllerUtil.getCurrentOperator(request));
             systemService.updateSystem(system);
             return JSON.toJSONString(new Response(1, BACK.SYSTEMUPDATESUCCESS.code, LEVEL.INFO.name(), BACK.SYSTEMUPDATESUCCESS.result));
         } catch (Exception e) {
@@ -421,7 +421,7 @@ public class AdminController {
         DJRole test = roleService.findRoleByName(role.name, role.system.id);
         if (test != null)
             return JSON.toJSONString(new Response(0, BACK.ROLEISEXIST.code, LEVEL.INFO.name(), BACK.ROLEISEXIST.result));
-        DJAdministrator administrator = getCurrentAdministrator(request);
+        DJAdministrator administrator = ControllerUtil.getCurrentAdministrator(request);
         role.setOperator(administrator.getName());
         role.createTime = new Date();
         try {
@@ -478,7 +478,7 @@ public class AdminController {
             system.id = systemId;
             role.system = system;
         }
-        role.setOperator(getCurrentOperator(request));
+        role.setOperator(ControllerUtil.getCurrentOperator(request));
         Set<DJFunction> functions = new HashSet<DJFunction>();
         if (ids.length != 0) {
             for (String id : ids) {
@@ -516,13 +516,6 @@ public class AdminController {
     }
 
 
-    private DJAdministrator getCurrentAdministrator(HttpServletRequest request) {
-        return (DJAdministrator) request.getSession().getAttribute("administrator");
-    }
-
-    private String getCurrentOperator(HttpServletRequest request) {
-        return getCurrentAdministrator(request).getName();
-    }
 
 
 }

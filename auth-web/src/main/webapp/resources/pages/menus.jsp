@@ -35,12 +35,24 @@
 
                 </ul>
             </li>
+
+            <li class="active">
+                <a href="#">粒子管理</a>
+                <ul class="nav">
+                    <li id="navG"><a href="/admin/add/bean/pre.do">添加粒子</a>
+                    </li>
+                    <li id="navH"><a
+                            href="/admin/find/beans.do">查询粒子</a></li>
+
+                </ul>
+            </li>
+
             <li class="active">
                 <a href="#">资源管理</a>
                 <ul class="nav">
-                    <li id="navG"><a href="/admin/addResourcePre.do">添加资源</a>
+                    <li id="navI"><a href="/admin/addResourcePre.do">添加资源</a>
                     </li>
-                    <li id="navH"><a
+                    <li id="navJ"><a
                             href="/admin/findResources.do">查询资源</a></li>
 
                 </ul>
@@ -48,9 +60,9 @@
             <li class="active">
                 <a href="#">用户管理</a>
                 <ul class="nav">
-                    <li id="navI"><a href="/admin/addUserPre.do">添加用户</a>
+                    <li id="navK"><a href="/admin/addUserPre.do">添加用户</a>
                     </li>
-                    <li id="navJ"><a
+                    <li id="navL"><a
                             href="/admin/findUsers.do">查询用户</a></li>
 
                 </ul>

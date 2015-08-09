@@ -28,6 +28,7 @@
         <mapping class="com.peaceful.auth.center.domain.DJUser"></mapping>
         <mapping class="com.peaceful.auth.center.domain.DJSystem"></mapping>
         <mapping class="com.peaceful.auth.center.domain.DJFunction"></mapping>
+        <mapping class="com.peaceful.auth.center.domain.DJBean"></mapping>
         <mapping class="com.peaceful.auth.center.domain.DJResource"></mapping>
         <mapping class="com.peaceful.auth.center.domain.DJRole"></mapping>
         <mapping class="com.peaceful.auth.center.domain.DJAdministrator"></mapping>

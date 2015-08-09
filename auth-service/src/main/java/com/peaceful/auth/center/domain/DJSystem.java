@@ -34,20 +34,23 @@ public class DJSystem implements Serializable {
     public void setIsDel(int isdel) {
         this.isDel = isdel;
     }
+
     @Column(name = "is_del")
     public int isDel;
     @Column(name = "web_index")
     public String webIndex;
-    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "create_time")
     public Date createTime;
-    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "update_time")
-    public Date updateTime= new Date();
+    public Date updateTime = new Date();
     @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
     public Set<DJUser> users = new HashSet<DJUser>();
     @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
     public Set<DJFunction> functions = new HashSet<DJFunction>();
+    @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
+    public Set<DJBean> beans = new HashSet<DJBean>();
     @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
     public Set<DJResource> resources = new HashSet<DJResource>();
     @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
@@ -163,5 +166,13 @@ public class DJSystem implements Serializable {
 
     public void setRoles(Set<DJRole> roles) {
         this.roles = roles;
+    }
+
+    public Set<DJBean> getBeans() {
+        return beans;
+    }
+
+    public void setBeans(Set<DJBean> beans) {
+        this.beans = beans;
     }
 }

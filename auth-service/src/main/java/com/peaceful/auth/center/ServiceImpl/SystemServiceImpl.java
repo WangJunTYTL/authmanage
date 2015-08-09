@@ -105,6 +105,13 @@ public class SystemServiceImpl implements SystemService {
         return djSystems;
     }
 
+    @Override
+    public List<DJSystem> findBeansSortBySystem() {
+        List<DJSystem> djSystems = systemDao.findAllSystems();
+        HibernateSystemUtil.systemLoad(djSystems, HibernateSystemUtil.BEAN);
+        return djSystems;
+    }
+
 
     public List<DJSystem> findAllSystems() {
         return systemDao.findAllSystems();

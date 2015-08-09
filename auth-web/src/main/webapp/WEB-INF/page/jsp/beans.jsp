@@ -32,14 +32,14 @@
                 <h4>菜单管理>>查询菜单</h4>
                 <div>
                     <c:choose>
-                        <c:when test="${empty requestScope.functions}">
+                        <c:when test="${empty requestScope.beans}">
                             还没有任何菜单
                         </c:when>
                         <c:otherwise>
                             <table class="table table-condensed">
-                                <c:forEach items="${requestScope.functions}" var="function">
+                                <c:forEach items="${requestScope.beans}" var="bean">
                                     <tr>
-                                        <td>${function.name}</td>
+                                        <td>${bean.name}</td>
                                     </tr>
                                 </c:forEach>
                             </table>
