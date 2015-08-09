@@ -58,17 +58,17 @@
                             <c:when test="${empty resource}">
                                 <input type="checkbox"
                                        value="1"
-                                       checked name="isdel"> 上线
+                                       checked name="isDel"> 上线
                             </c:when>
-                            <c:when test="${resource.isdel == 1}">
+                            <c:when test="${resource.isDel == 1}">
                                 <input type="checkbox"
                                        value="1"
-                                       checked name="isdel"> 上线
+                                       checked name="isDel"> 上线
                             </c:when>
                             <c:otherwise>
                                 <input type="checkbox"
                                        value="1"
-                                       name="isdel"> 上线
+                                       name="isDel"> 上线
                             </c:otherwise>
                         </c:choose>
 

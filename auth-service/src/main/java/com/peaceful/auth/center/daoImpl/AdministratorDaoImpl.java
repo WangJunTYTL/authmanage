@@ -21,8 +21,8 @@ public class AdministratorDaoImpl implements AdministratorDao {
     }
 
 
-    public DJAdministrator findAdministratorByUsernameAndPass(String username,String password) {
-        List<DJAdministrator> result = sessionFactory.getCurrentSession().createQuery("from adminatrator as a where a .name = ?  and a.password = ?").setString(0, username).setString(1,password).list();
+    public DJAdministrator findAdministratorByUsernameAndPass(String username, String password) {
+        List<DJAdministrator> result = sessionFactory.getCurrentSession().createQuery("from t_adminstrator as a where a .name = ?  and a.password = ?").setString(0, username).setString(1, password).list();
         if (result != null && result.size() > 0)
             return result.get(0);
         else

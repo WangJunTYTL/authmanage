@@ -66,17 +66,17 @@
                             <c:when test="${empty role}">
                                 <input type="checkbox"
                                        value="1"
-                                       checked name="isdel"> 上线
+                                       checked name="isDel"> 上线
                             </c:when>
-                            <c:when test="${role.isdel == 1}">
+                            <c:when test="${role.isDel == 1}">
                                 <input type="checkbox"
                                        value="1"
-                                       checked name="isdel"> 上线
+                                       checked name="isDel"> 上线
                             </c:when>
                             <c:otherwise>
                                 <input type="checkbox"
                                        value="1"
-                                       name="isdel"> 上线
+                                       name="isDel"> 上线
                             </c:otherwise>
                         </c:choose>
                         <br>
@@ -84,7 +84,7 @@
                         <h4 class="bs-callout-warning">拥有的菜单</h4>
 
                         <div class="input-group" id="groupList">
-                            <input id="funIds" type="hidden" name="menuIds"/>
+                            <input id="funIds" type="hidden" name="functionIds"/>
 
                             <div class="auth-item fun-item">
                                 <ul class="item-box ztree"></ul>
@@ -105,23 +105,23 @@
 <script>
     $(
             function () {
-                $.getJSON("/admin/" + ${role.system.id} +"/getMenus.do", function (date) {
-                    var menus = date.menus;
+                $.getJSON("/admin/" + ${role.system.id} +"/getfunctions.do", function (date) {
+                    var functions = date.functions;
                     var treeData = [];
-                    for (var i = 0; i < menus.length; i++) {
+                    for (var i = 0; i < functions.length; i++) {
                         var data = {};
-                        data.id = menus[i].id;
-                        if (menus[i].parentId == null)
+                        data.id = functions[i].id;
+                        if (functions[i].parentId == null)
                             data.pId = 0;
                         else
-                            data.pId = menus[i].parentId;
-                        data.name = menus[i].name;
-                        <c:forEach items="${role.menus}" var="menu">
-                        if (menus[i].id == ${menu.id}) {
+                            data.pId = functions[i].parentId;
+                        data.name = functions[i].name;
+                        <c:forEach items="${role.functions}" var="function">
+                        if (functions[i].id == ${function.id}) {
                             data.checked = true;
                         }
                         </c:forEach>
-                        if (menus[i].isdel == 0)
+                        if (functions[i].isDel == 0)
                             data.chkDisabled = true;
                         data.open = true;
                         treeData.push(data);

@@ -1,9 +1,9 @@
 package com.wj.hibernate.ServiceImpl;
 
-import com.peaceful.auth.center.Service.MenuService;
+import com.peaceful.auth.center.Service.FunctionService;
 import com.peaceful.auth.center.Service.RoleService;
 import com.peaceful.auth.center.Service.SystemService;
-import com.peaceful.auth.center.domain.DJMenu;
+import com.peaceful.auth.center.domain.DJFunction;
 import com.peaceful.auth.center.domain.DJRole;
 import com.peaceful.auth.center.domain.DJSystem;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class MenuServiceImplTest {
 
-    MenuService menuService = null;
+    FunctionService menuService = null;
     SystemService systemService = null;
     RoleService roleService= null;
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -28,7 +28,7 @@ public class MenuServiceImplTest {
     @org.junit.Before
     public void setUp() throws Exception {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
-        menuService = applicationContext.getBean("menuService", MenuService.class);
+        menuService = applicationContext.getBean("menuService", FunctionService.class);
         systemService = applicationContext.getBean("systemService", SystemService.class);
         roleService = applicationContext.getBean("roleService", RoleService.class);
     }
@@ -45,7 +45,7 @@ public class MenuServiceImplTest {
 
     @Test
     public void testInsertMenu() throws Exception {
-        DJMenu menu = DomainUtil.getMenu();
+        DJFunction menu = DomainUtil.getMenu();
         DJSystem system = DomainUtil.getSystem();
         system.id=1;
         menu.system= system;
@@ -54,7 +54,7 @@ public class MenuServiceImplTest {
         List<DJRole> roles = new ArrayList<DJRole>();
         roles.add(role);
         menu.roles=roles;
-        menuService.insertMenu(menu);
+        menuService.insertFunction(menu);
     }
 
 

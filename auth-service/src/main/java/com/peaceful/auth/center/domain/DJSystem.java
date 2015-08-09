@@ -1,6 +1,8 @@
 package com.peaceful.auth.center.domain;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,38 +13,41 @@ import java.util.Set;
  * Created by wangjun on 14-4-17.
  */
 @Entity
-@Table(name = "system")
+@Table(name = "t_system")
 public class DJSystem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer id;
     public String name;
-    public String appkey;
+    @Column(name = "app_key")
+    public String appKey;
     public String secret;
     public String token;
     public String operator;
     public String description;
 
-    public int getIsdel() {
-        return isdel;
+    public int getIsDel() {
+        return isDel;
     }
 
-    public void setIsdel(int isdel) {
-        this.isdel = isdel;
+    public void setIsDel(int isdel) {
+        this.isDel = isdel;
     }
-
-    public int isdel;
+    @Column(name = "is_del")
+    public int isDel;
     @Column(name = "web_index")
     public String webIndex;
+    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
     @Column(name = "create_time")
     public Date createTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
     @Column(name = "update_time")
     public Date updateTime= new Date();
     @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
     public Set<DJUser> users = new HashSet<DJUser>();
     @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
-    public Set<DJMenu> menus = new HashSet<DJMenu>();
+    public Set<DJFunction> functions = new HashSet<DJFunction>();
     @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
     public Set<DJResource> resources = new HashSet<DJResource>();
     @OneToMany(mappedBy = "system", fetch = FetchType.LAZY)
@@ -80,12 +85,12 @@ public class DJSystem implements Serializable {
         this.description = description;
     }
 
-    public String getAppkey() {
-        return appkey;
+    public String getAppKey() {
+        return appKey;
     }
 
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
+    public void setAppKey(String appkey) {
+        this.appKey = appkey;
     }
 
     public String getSecret() {
@@ -136,12 +141,12 @@ public class DJSystem implements Serializable {
         this.users = users;
     }
 
-    public Set<DJMenu> getMenus() {
-        return menus;
+    public Set<DJFunction> getFunctions() {
+        return functions;
     }
 
-    public void setMenus(Set<DJMenu> menus) {
-        this.menus = menus;
+    public void setFunctions(Set<DJFunction> functions) {
+        this.functions = functions;
     }
 
     public Set<DJResource> getResources() {

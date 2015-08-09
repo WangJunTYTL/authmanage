@@ -46,13 +46,13 @@
 
                                 <c:forEach items="${requestScope.systems}" var="system">
                                     <c:choose>
-                                        <c:when test="${system.isdel == 1}">
+                                        <c:when test="${system.isDel == 1}">
                                             <tr>
                                                 <td colspan="4">所属系统------>${system.name}</td>
                                             </tr>
                                             <c:forEach items="${system.users}" var="user">
                                                 <c:choose>
-                                                    <c:when test="${user.isdel == 1}">
+                                                    <c:when test="${user.isDel == 1}">
                                                         <tr>
                                                             <td>${user.id}</td>
                                                             <td class="text-primary"><a
@@ -82,7 +82,7 @@
                                             </tr>
                                             <c:forEach items="${system.users}" var="user">
                                                 <c:choose>
-                                                    <c:when test="${user.isdel == 1}">
+                                                    <c:when test="${user.isDel == 1}">
                                                         <tr>
                                                             <td>${user.id}</td>
                                                             <td class="text-primary"><a

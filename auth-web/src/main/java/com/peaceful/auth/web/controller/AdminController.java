@@ -7,7 +7,7 @@ import com.peaceful.auth.center.util.HibernateSystemUtil;
 import com.peaceful.auth.center.Service.*;
 import com.peaceful.auth.center.domain.*;
 import com.peaceful.auth.data.util.MD5Utils;
-import com.peaceful.auth.data.domain.JSONMenu;
+import com.peaceful.auth.data.domain.JSONFunction;
 import com.peaceful.auth.web.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -42,7 +42,7 @@ public class AdminController {
     private RoleService roleService;
 
     @Autowired
-    private MenuService menuService;
+    private FunctionService functionService;
 
     @Autowired
     private ResourceService resourceService;
@@ -91,32 +91,32 @@ public class AdminController {
     }
 
 
-    @RequestMapping(value = "/menus.do")
-    public String findAllMenusOfSystem() {
-        List<DJSystem> systems = systemService.findMenusSortBySystem();
+    @RequestMapping(value = "/functions.do")
+    public String findAllFunctionsOfSystem() {
+        List<DJSystem> systems = systemService.findFunctionsSortBySystem();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("menus", systems);
-        modelAndView.setViewName("menus");
-        return "menus";
+        modelAndView.addObject("functions", systems);
+        modelAndView.setViewName("functions");
+        return "functions";
     }
 
-    @RequestMapping(value = "/addMenu.do", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/add/function.do", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String addMenu(HttpServletRequest request, DJMenu menu, Integer systemId, Integer[] roleIds, Integer groupId) {
+    public String addFunction(HttpServletRequest request, DJFunction function, Integer systemId, Integer[] roleIds, Integer groupId) {
         if (systemId == null) {
-            return JSON.toJSONString(new Response(0, BACK.MENUNOTHASSYSTEN.code, LEVEL.ERROR.name(), BACK.MENUNOTHASSYSTEN.result));
+            return JSON.toJSONString(new Response(0, BACK.FUNCTIONNOTHASSYSTEN.code, LEVEL.ERROR.name(), BACK.FUNCTIONNOTHASSYSTEN.result));
         }
         if (roleIds == null || roleIds.length == 0) {
-            return JSON.toJSONString(new Response(0, BACK.MENUNOTHASROLE.code, LEVEL.WARN.name(), BACK.MENUNOTHASROLE.result));
+            return JSON.toJSONString(new Response(0, BACK.FUNCTIONNOTHASROLE.code, LEVEL.WARN.name(), BACK.FUNCTIONNOTHASROLE.result));
         }
-        DJMenu test = menuService.findMenuByMenukey(menu.menukey, systemId);
+        DJFunction test = functionService.findFunctionByFunctionkey(function.functionKey, systemId);
         if (test != null)
-            return JSON.toJSONString(new Response(0, BACK.MENUISEXIST.code, LEVEL.WARN.name(), BACK.MENUISEXIST.result));
-        menu.operator = getCurrentOperator(request);
-        menu.createTime = new Date();
+            return JSON.toJSONString(new Response(0, BACK.FUNCTIONISEXIST.code, LEVEL.WARN.name(), BACK.FUNCTIONISEXIST.result));
+        function.operator = getCurrentOperator(request);
+        function.createTime = new Date();
         DJSystem system = new DJSystem();
         system.id = systemId;
-        menu.system = system;
+        function.system = system;
         List<DJRole> roles = new ArrayList<DJRole>();
         if (roleIds != null) {
             for (Integer id : roleIds) {
@@ -125,50 +125,50 @@ public class AdminController {
                 roles.add(role);
             }
         }
-        menu.roles = roles;
-        if (menu.parentMenu == null || menu.parentMenu.id == null)
-            menu.parentMenu = null;
+        function.roles = roles;
+        if (function.parentFunction == null || function.parentFunction.id == null)
+            function.parentFunction = null;
         try {
-            menuService.insertMenu(menu);
-            return JSON.toJSONString(new Response(1, BACK.MENUADDSUCCESS.code, LEVEL.INFO.name(), BACK.MENUADDSUCCESS.result));
+            functionService.insertFunction(function);
+            return JSON.toJSONString(new Response(1, BACK.FUNCTIONADDSUCCESS.code, LEVEL.INFO.name(), BACK.FUNCTIONADDSUCCESS.result));
         } catch (Exception e) {
-            logger.error("addMenu:[}", e);
+            logger.error("addFunction:[}", e);
             return JSON.toJSONString(new Response(0, BACK.UNKNOW.code, LEVEL.ERROR.name(), BACK.UNKNOW.result));
         }
     }
 
-    @RequestMapping(value = "/addMenuPre.do")
-    public String addMenuPre(HttpServletRequest request) {
+    @RequestMapping(value = "/add/function/pre.do")
+    public String addFunctionPre(HttpServletRequest request) {
         request.setAttribute("systems", systemService.findAllSystems());
-        return "addMenu";
+        return "addFunction";
     }
 
 
-    @RequestMapping(value = "/findMenus.do")
-    public String findAllMenusSortBySystem(HttpServletRequest request) {
-        request.setAttribute("systems", systemService.findMenusSortBySystem());
-        return "menuList";
+    @RequestMapping(value = "/find/functions.do")
+    public String findAllFunctionsSortBySystem(HttpServletRequest request) {
+        request.setAttribute("systems", systemService.findFunctionsSortBySystem());
+        return "functionList";
     }
 
 
-    @RequestMapping(value = "/{id}/updateMenu.do")
-    public String updateMenu(HttpServletRequest request, @PathVariable Integer id) {
-        DJMenu menu = menuService.findMenuByMenuId(id);
-        request.setAttribute("menu", menu);
-        request.setAttribute("system", systemService.findSystemBySystemId(menu.system.id, HibernateSystemUtil.ROLE));
-        return "updateMenu";
+    @RequestMapping(value = "/{id}/update/function.do")
+    public String updateFunction(HttpServletRequest request, @PathVariable Integer id) {
+        DJFunction function = functionService.findFunctionByFunctionId(id);
+        request.setAttribute("function", function);
+        request.setAttribute("system", systemService.findSystemBySystemId(function.system.id, HibernateSystemUtil.ROLE));
+        return "updateFunction";
     }
 
 
-    @RequestMapping(value = "/updateMenu.do", produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/update/function.do", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String updateMenu(DJMenu menu, Integer systemId, Integer[] roleIds, HttpServletRequest request) {
+    public String updateFunction(DJFunction function, Integer systemId, Integer[] roleIds, HttpServletRequest request) {
         if (systemId == null) {
-            menu.system = null;
+            function.system = null;
         } else {
             DJSystem system = new DJSystem();
             system.id = systemId;
-            menu.system = system;
+            function.system = system;
         }
         List<DJRole> roles = new ArrayList<DJRole>();
         if (roleIds != null) {
@@ -178,22 +178,22 @@ public class AdminController {
                 roles.add(role);
             }
         }
-        menu.roles = roles;
-        menu.setOperator(getCurrentOperator(request));
+        function.roles = roles;
+        function.setOperator(getCurrentOperator(request));
         try {
-            if (menu.parentMenu != null && menu.parentMenu.id != null) {
-                DJMenu menu_ = menuService.findMenuByMenuId(menu.parentMenu.id);
-                if (menu_ != null && menu_.parentMenu != null && menu_.parentMenu.id != null) {
-                    if (menu_.parentMenu.id.equals(menu.id))
-                        return JSON.toJSONString(new Response(1, BACK.MENUCYCLE.code, LEVEL.ERROR.name(), BACK.MENUCYCLE.result));
+            if (function.parentFunction != null && function.parentFunction.id != null) {
+                DJFunction function_ = functionService.findFunctionByFunctionId(function.parentFunction.id);
+                if (function_ != null && function_.parentFunction != null && function_.parentFunction.id != null) {
+                    if (function_.parentFunction.id.equals(function.id))
+                        return JSON.toJSONString(new Response(1, BACK.FUNCTIONCYCLE.code, LEVEL.ERROR.name(), BACK.FUNCTIONCYCLE.result));
                 }
             }
-            if (menu.parentMenu.id == null)
-                menu.parentMenu = null;
-            menuService.updateMenu(menu);
-            return JSON.toJSONString(new Response(1, BACK.MENUUPDATESUCCESS.code, LEVEL.INFO.name(), BACK.MENUUPDATESUCCESS.result));
+            if (function.parentFunction.id == null)
+                function.parentFunction = null;
+            functionService.updateFunction(function);
+            return JSON.toJSONString(new Response(1, BACK.FUNCTIONUPDATESUCCESS.code, LEVEL.INFO.name(), BACK.FUNCTIONUPDATESUCCESS.result));
         } catch (Exception e) {
-            logger.error("updateMenu:{}", e);
+            logger.error("updateFunction:{}", e);
             return JSON.toJSONString(new Response(0, BACK.UNKNOW.code, LEVEL.ERROR.name(), BACK.UNKNOW.result));
         }
     }
@@ -459,17 +459,17 @@ public class AdminController {
 
     @RequestMapping(value = "/{id}/updateRole.do", produces = {"application/json;charset=UTF-8"})
     public String updateRole(HttpServletRequest request, @PathVariable Integer id) {
-        DJRole role = roleService.findRoleByRoleId(id, HibernateRoleUtil.MENU);
+        DJRole role = roleService.findRoleByRoleId(id, HibernateRoleUtil.FUNCTION);
         request.setAttribute("role", role);
         return "updateRole";
     }
 
     @RequestMapping(value = "/updateRole.do", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String updateRole(DJRole role, Integer systemId, HttpServletRequest request, String menuIds) {
+    public String updateRole(DJRole role, Integer systemId, HttpServletRequest request, String functionIds) {
         String[] ids = {};
-        if (menuIds != null && StringUtils.isNotEmpty(menuIds)) {
-            ids = menuIds.split(",");
+        if (functionIds != null && StringUtils.isNotEmpty(functionIds)) {
+            ids = functionIds.split(",");
         }
         if (systemId == null) {
             role.system = null;
@@ -479,16 +479,16 @@ public class AdminController {
             role.system = system;
         }
         role.setOperator(getCurrentOperator(request));
-        Set<DJMenu> menus = new HashSet<DJMenu>();
+        Set<DJFunction> functions = new HashSet<DJFunction>();
         if (ids.length != 0) {
             for (String id : ids) {
-                DJMenu menu = new DJMenu();
-                menu.setId(Integer.parseInt(id));
-                menus.add(menu);
+                DJFunction function = new DJFunction();
+                function.setId(Integer.parseInt(id));
+                functions.add(function);
             }
         }
 
-        role.menus = menus;
+        role.functions = functions;
         try {
             roleService.updateRole(role);
             return JSON.toJSONString(new Response(1, BACK.ROLEUPDATESUCCESS.code, LEVEL.INFO.name(), BACK.ROLEUPDATESUCCESS.result));
@@ -505,13 +505,13 @@ public class AdminController {
     }
 
 
-    @RequestMapping(value = "/{id}/getMenus.do", produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/{id}/find/functions.do", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String getMenusOfSystem(@PathVariable Integer id) {
-        List<JSONMenu> menuList = new ArrayList<JSONMenu>();
-        menuList.addAll(TransitionUtils.batchToJSONMenu(systemService.findMenusBySystemId(id)));
+    public String getFunctionsOfSystem(@PathVariable Integer id) {
+        List<JSONFunction> functionList = new ArrayList<JSONFunction>();
+        functionList.addAll(TransitionUtils.batchToJSONFunction(systemService.findFunctionsBySystemId(id)));
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("menus", menuList);
+        jsonObject.put("functions", functionList);
         return jsonObject.toJSONString();
     }
 

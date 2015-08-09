@@ -90,20 +90,20 @@ public class SDKServiceController {
     @ResponseBody
     public String findUser(String userEmail, Integer systemId) {
         DJUser user = userService.findUserByUserName(userEmail, systemId);
-        if (user == null || user.isdel != 1) {
+        if (user == null || user.isDel != 1) {
             return JSON.toJSONString(null);
         }
         List<DJResource> resources = userService.findCanAccressResourcesOfCerrentSystemAndUser(user.id, systemId);
-        List<DJMenu> menus = userService.findCanAccressMenusOfCerrentSystemAndUser(user.id, systemId);
+        List<DJFunction> menus = userService.findCanAccressFunctionsOfCerrentSystemAndUser(user.id, systemId);
         List<DJRole> roles = userService.findHasAuthOfUser(user.id, systemId);
         JSONUser jsonUser = TransitionUtils.toJSONUser(user);
-        List<JSONMenu> menuList = new ArrayList<JSONMenu>();
+        List<JSONFunction> menuList = new ArrayList<JSONFunction>();
         List<JSONResource> resourceList = new ArrayList<JSONResource>();
         List<JSONRole> roleList = new ArrayList<JSONRole>();
-        menuList.addAll(TransitionUtils.batchToJSONMenu(menus));
+        menuList.addAll(TransitionUtils.batchToJSONFunction(menus));
         resourceList.addAll(TransitionUtils.batchToJSONResource(resources));
         roleList.addAll(TransitionUtils.batchToJSONRole(roles));
-        jsonUser.menus = menuList;
+        jsonUser.functions = menuList;
         jsonUser.resources = resourceList;
         jsonUser.roles = roleList;
         return JSON.toJSONString(jsonUser);
@@ -125,17 +125,17 @@ public class SDKServiceController {
                 for (DJRole role : roles) {
                     JSONRole jsonRole = TransitionUtils.toJSONRole(role);
                     Set<DJUser> users = role.users;
-                    Set<DJMenu> menus = role.menus;
+                    Set<DJFunction> menus = role.functions;
                     List<JSONUser> userList = new ArrayList<JSONUser>();
                     if (users != null) {
                         userList.addAll(TransitionUtils.batchToJSONUser(users));
                     }
-                    List<JSONMenu> menuList = new ArrayList<JSONMenu>();
+                    List<JSONFunction> menuList = new ArrayList<JSONFunction>();
                     if (menus != null) {
-                        menuList.addAll(TransitionUtils.batchToJSONMenu(menus));
+                        menuList.addAll(TransitionUtils.batchToJSONFunction(menus));
                     }
                     jsonRole.users = userList;
-                    jsonRole.menus = menuList;
+                    jsonRole.functions = menuList;
                     jsonRoles.add(jsonRole);
                 }
             }
@@ -163,7 +163,7 @@ public class SDKServiceController {
         if (systemId == null) {
             return JSON.toJSONString(new Response(0, BACK.USERNOTHASSYSTEN.code, LEVEL.WARN.name(), BACK.USERNOTHASSYSTEN.result));
         }
-        user.isdel = 1;
+        user.isDel = 1;
         user.createTime = new Date();
         user.system = ReferenceId.getSystem(systemId);
         user.roles = ReferenceId.getRoles(roleIds);
@@ -247,13 +247,13 @@ public class SDKServiceController {
                 for (int i = 0; i < jsonArray.size(); i++) {
                     menuIds_[i] = (Integer) jsonArray.get(i);
                 }
-                role.menus = ReferenceId.getMenus_(menuIds_);
+                role.functions = ReferenceId.getMenus_(menuIds_);
             } else
-                role.menus = null;
+                role.functions = null;
         } else {
-            DJRole djRole = roleService.findRoleByRoleId(role.id, HibernateRoleUtil.MENU);
+            DJRole djRole = roleService.findRoleByRoleId(role.id, HibernateRoleUtil.FUNCTION);
             role.system = djRole.system;
-            role.menus = djRole.menus;
+            role.functions = djRole.functions;
         }
         try {
             roleService.updateRole(role);
@@ -266,8 +266,8 @@ public class SDKServiceController {
     @RequestMapping(value = "/getMenus.do", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String getMenusOfSystem(Integer systemId) {
-        List<JSONMenu> menuList = new ArrayList<JSONMenu>();
-        menuList.addAll(TransitionUtils.batchToJSONMenu(systemService.findMenusBySystemId(systemId)));
+        List<JSONFunction> menuList = new ArrayList<JSONFunction>();
+        menuList.addAll(TransitionUtils.batchToJSONFunction(systemService.findFunctionsBySystemId(systemId)));
         JSONArray jsonArray = new JSONArray();
         jsonArray.addAll(menuList);
         return jsonArray.toJSONString();

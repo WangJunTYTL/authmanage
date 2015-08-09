@@ -17,9 +17,11 @@ import java.io.Serializable;
  */
 public class VCS implements Serializable {
 
-    // 系统
+    // 系统唯一标识
     private static Integer systemId;
+    // 数据版本
     private static long currentVersion;
+    // 通信token认证
     private static long token;
     private static Logger logger = LoggerFactory.getLogger(VCS.class);
 

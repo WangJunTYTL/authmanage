@@ -26,12 +26,12 @@
             </li>
 
             <li class="active">
-                <a href="#">菜单管理</a>
+                <a href="#">功能管理</a>
                 <ul class="nav">
-                    <li id="navE"><a href="/admin/addMenuPre.do">添加菜单</a>
+                    <li id="navE"><a href="/admin/add/function/pre.do">添加功能</a>
                     </li>
                     <li id="navF"><a
-                            href="/admin/findMenus.do">查询菜单</a></li>
+                            href="/admin/find/functions.do">查询功能</a></li>
 
                 </ul>
             </li>
@@ -68,13 +68,14 @@
             var date = new Date();
             var ms = objHours * 3600 * 1000;
             date.setTime(date.getTime() + ms);
-            str += "; expires=" + date.toGMTString();
+            str += "; expires=" + date.toGMTString()+"; path=/";
         }
         document.cookie = str;
     }
 
     function getCookie(objName) {//获取指定名称的cookie的值
         var arrStr = document.cookie.split("; ");
+//        alert(arrStr)
         for (var i = 0; i < arrStr.length; i++) {
             var temp = arrStr[i].split("=");
             if (temp[0] == objName) return unescape(temp[1]);
@@ -84,14 +85,16 @@
     function delCookie(name) {//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
         var date = new Date();
         date.setTime(date.getTime() - 10000);
-        document.cookie = name + "=a; expires=" + date.toGMTString();
+        document.cookie = name + "=a; expires=" + date.toGMTString()+"; path=/";
     }
 
     $(function(){
         $("li[id^='nav']").click(function(){
+            delCookie("nav")
             addCookie("nav",this.id,5);
         });
         var id = getCookie("nav");
+//        alert(id);
         $("#"+id).attr("class","active");
     });
 </script>

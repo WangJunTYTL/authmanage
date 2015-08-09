@@ -1,7 +1,7 @@
 import com.peaceful.auth.sdk.Impl.AuthServiceImpl;
 import com.peaceful.auth.sdk.api.AuthService;
 import com.peaceful.auth.sdk.exception.CreateSessionException;
-import com.peaceful.auth.data.domain.JSONMenu;
+import com.peaceful.auth.data.domain.JSONFunction;
 import com.peaceful.auth.data.domain.JSONRole;
 import com.peaceful.auth.data.domain.JSONSystem;
 import com.peaceful.auth.data.domain.JSONUser;
@@ -37,7 +37,7 @@ public class AuthServiceImplTest {
     public void testGetUser() throws Exception {
         JSONUser user = service.getUser("admin");
         logger.info("user emial is {} ", user.email);
-        logger.info("menus is {} ", user.menus);
+        logger.info("menus is {} ", user.functions);
         logger.info("resources is {} ", user.resources);
     }
 
@@ -54,8 +54,8 @@ public class AuthServiceImplTest {
 
     @org.junit.Test
     public void testGetMenuString() throws Exception {
-        String menu = service.getMenu("createJob", "onclick=\"alert('hello')\"", 1, "jun.wang");
-        String menu1 = service.getMenu("createJob", "onclick=\"alert('hello')\"", 3, "jun.wang");
+        String menu = service.getFunction("createJob", "onclick=\"alert('hello')\"", 1, "jun.wang");
+        String menu1 = service.getFunction("createJob", "onclick=\"alert('hello')\"", 3, "jun.wang");
         logger.info(menu);
         logger.info(menu1);
     }
@@ -107,7 +107,7 @@ public class AuthServiceImplTest {
         role.name = "你大大爷";
         role.operator = "junit";
         role.isdel = 1;
-        List<JSONMenu> menus = service.getMenusOfSystem();
+        List<JSONFunction> menus = service.getFunctionsOfSystem();
         Integer[] menuIds = new Integer[menus.size()];
         for (int i = 0; i < menus.size(); i++)
             menuIds[i] = menus.get(i).getId();
@@ -116,7 +116,7 @@ public class AuthServiceImplTest {
 
     @org.junit.Test
     public void getMenusOfSystem() {
-        Util.report("menus size is " + service.getMenusOfSystem().size());
+        Util.report("menus size is " + service.getFunctionsOfSystem().size());
     }
 
     @org.junit.Test

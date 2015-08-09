@@ -5,13 +5,13 @@ import java.io.Serializable;
 /**
  * Created by wangjun on 14-4-23.
  */
-public class JSONMenu implements Serializable {
+public class JSONFunction implements Serializable {
     public Integer id;
-    public String menukey;
+    public String functionKey;
     public String name;
     public String url;
     public Integer parentId;
-    public int isdel;
+    public int isDel;
 
 
     @Override
@@ -19,9 +19,9 @@ public class JSONMenu implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        JSONMenu menu = (JSONMenu) o;
+        JSONFunction function = (JSONFunction) o;
 
-        if (id != null ? !id.equals(menu.id) : menu.id != null) return false;
+        if (id != null ? !id.equals(function.id) : function.id != null) return false;
 
         return true;
     }
@@ -39,12 +39,12 @@ public class JSONMenu implements Serializable {
         this.id = id;
     }
 
-    public String getMenukey() {
-        return menukey;
+    public String getFunctionKey() {
+        return functionKey;
     }
 
-    public void setMenukey(String menukey) {
-        this.menukey = menukey;
+    public void setFunctionKey(String functionKey) {
+        this.functionKey = functionKey;
     }
 
     public String getName() {
@@ -71,11 +71,11 @@ public class JSONMenu implements Serializable {
         this.parentId = parentId;
     }
 
-    public int getIsdel() {
-        return isdel;
+    public int getIsDel() {
+        return isDel;
     }
 
-    public void setIsdel(int isdel) {
-        this.isdel = isdel;
+    public void setIsDel(int isDel) {
+        this.isDel = isDel;
     }
 }

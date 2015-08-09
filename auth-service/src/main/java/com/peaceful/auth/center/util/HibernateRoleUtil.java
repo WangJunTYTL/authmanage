@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class HibernateRoleUtil {
     public static final int USER = 0;
-    public static final int MENU = 1;
+    public static final int FUNCTION = 1;
     public static final int MENUANDPARENT = 8;
     public static final int RESOURCE = 2;
     public static final int ROLE = 3;
@@ -30,7 +30,7 @@ public class HibernateRoleUtil {
                     break;
                 }
                 case 1: {
-                    role.menus.size();
+                    role.functions.size();
                     break;
                 }
                 case 2: {
@@ -41,7 +41,7 @@ public class HibernateRoleUtil {
 
                 case 7: {
                     role.users.size();
-                    role.menus.size();
+                    role.functions.size();
                     role.resources.size();
 
                     break;

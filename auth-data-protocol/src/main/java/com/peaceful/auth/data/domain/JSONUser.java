@@ -20,7 +20,7 @@ public class JSONUser implements Serializable{
     public Date createTime;
     public Date updateTime;
     public List<JSONResource> resources = new ArrayList<JSONResource>();
-    public List<JSONMenu> menus = new ArrayList<JSONMenu>();
+    public List<JSONFunction> functions = new ArrayList<JSONFunction>();
     public List<JSONRole> roles = new ArrayList<JSONRole>();
     public Date getCreateTime() {
         return createTime;
@@ -61,12 +61,12 @@ public class JSONUser implements Serializable{
         this.resources = resources;
     }
 
-    public List<JSONMenu> getMenus() {
-        return menus;
+    public List<JSONFunction> getFunctions() {
+        return functions;
     }
 
-    public void setMenus(List<JSONMenu> menus) {
-        this.menus = menus;
+    public void setFunctions(List<JSONFunction> functions) {
+        this.functions = functions;
     }
 
     public String getName() {

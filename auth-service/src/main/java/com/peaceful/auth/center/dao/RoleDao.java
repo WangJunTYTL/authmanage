@@ -8,13 +8,14 @@ import com.peaceful.auth.center.domain.DJRole;
  */
 public interface RoleDao {
 
-    abstract DJRole findRoleById(Integer id);
-    abstract DJRole findRoleByName(String name,Integer systemId);
+    DJRole findRoleById(Integer id);
 
-    abstract void inserte(DJRole djJRole);
+    DJRole findRoleByName(String name, Integer systemId);
 
-    abstract void update(DJRole djJRole);
+    void inserte(DJRole djJRole);
 
-    abstract void delate(DJRole djJRole);
+    void update(DJRole djJRole);
+
+    void delate(DJRole djJRole);
 
 }

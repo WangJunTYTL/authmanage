@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class HibernateSystemUtil {
     public static final int USER = 0;
-    public static final int MENU = 1;
-    public static final int MENUANDPARENT = 8;
+    public static final int FUNCTION = 1;
+    public static final int FUNCTIONANDPARENT = 8;
     public static final int RESOURCE = 2;
     public static final int ROLE = 3;
     public static final int ROLEANDUSER = 5;
@@ -32,7 +32,7 @@ public class HibernateSystemUtil {
                     break;
                 }
                 case 1: {
-                    system.menus.size();
+                    system.functions.size();
                     break;
                 }
                 case 2: {
@@ -47,7 +47,7 @@ public class HibernateSystemUtil {
                 case 7: {
                     system.roles.size();
                     system.users.size();
-                    system.menus.size();
+                    system.functions.size();
                     system.resources.size();
 
                     break;

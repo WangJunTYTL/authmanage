@@ -76,7 +76,7 @@
     <div class="text-muted">如果你没有配置上述那些角色信息，请先运行./example/docs/xx.sql</div>
     <h5 class="page-header">扩展通过jstl获取菜单【当你登录时，可以发现你拥有的功能点将会出现在下方,这一部分需要你自己参照MenuUtils的写法去扩展自己的菜单样式】</h5>
     <div>
-        <menu:menu menuKey="me" menuLevel="L1"></menu:menu>
+        <menu:menu functionKey="me" menuLevel="L1"></menu:menu>
     </div>
 </div>
 <script src="/js/formvalid/jquery.validate.js"></script>

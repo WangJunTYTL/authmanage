@@ -51,7 +51,7 @@
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"
                                                                                                        value="1"
-                                                                                                       checked name="isdel"> 上线
+                                                                                                       checked name="isDel"> 上线
 
 
                         <div class="input-group">

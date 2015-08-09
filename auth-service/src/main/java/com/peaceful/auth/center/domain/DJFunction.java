@@ -1,5 +1,7 @@
 package com.peaceful.auth.center.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -7,38 +9,41 @@ import java.util.*;
 /**
  * Created by wangjun on 14-4-15.
  */
-@Entity(name = "menu")
-public class DJMenu implements Serializable {
+@Entity(name = "t_function")
+public class DJFunction implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer id;
-    @Column(name = "menu_key")
-    public String menukey;
+    @Column(name = "function_key")
+    public String functionKey;
     public String name;
     public String url;
     public String description;
     public String operator;
-    public int isdel;
+    @Column(name = "is_del")
+    public int isDel;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "create_time")
     public Date createTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "update_time")
     public Date updateTime = new Date();
     @ManyToOne(cascade = {CascadeType.MERGE})
     public DJSystem system = new DJSystem();
     @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(
-            name="menu_role",
-            inverseJoinColumns={@JoinColumn(name="roles_id")},
-            joinColumns={@JoinColumn(name="menus_id")}
+            name = "t_function_role",
+            inverseJoinColumns = {@JoinColumn(name = "roles_id")},
+            joinColumns = {@JoinColumn(name = "functions_id")}
     )
     public List<DJRole> roles = new ArrayList<DJRole>();
     @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinColumn(name="parent_id")
-    public DJMenu parentMenu;
+    @JoinColumn(name = "parent_id")
+    public DJFunction parentFunction;
 
 
-    public DJMenu() {
+    public DJFunction() {
 
     }
 
@@ -46,8 +51,8 @@ public class DJMenu implements Serializable {
         this.id = id;
     }
 
-    public void setMenukey(String menukey) {
-        this.menukey = menukey;
+    public void setFunctionKey(String functionKey) {
+        this.functionKey = functionKey;
     }
 
     public void setName(String name) {
@@ -66,8 +71,8 @@ public class DJMenu implements Serializable {
         this.operator = operator;
     }
 
-    public void setIsdel(int isdel) {
-        this.isdel = isdel;
+    public void setIsDel(int isdel) {
+        this.isDel = isdel;
     }
 
     public void setCreateTime(Date createTime) {
@@ -90,8 +95,8 @@ public class DJMenu implements Serializable {
         return id;
     }
 
-    public String getMenukey() {
-        return menukey;
+    public String getFunctionKey() {
+        return functionKey;
     }
 
     public String getName() {
@@ -110,8 +115,8 @@ public class DJMenu implements Serializable {
         return operator;
     }
 
-    public int getIsdel() {
-        return isdel;
+    public int getIsDel() {
+        return isDel;
     }
 
     public Date getCreateTime() {
@@ -130,12 +135,12 @@ public class DJMenu implements Serializable {
         return roles;
     }
 
-    public DJMenu getParentMenu() {
-        return parentMenu;
+    public DJFunction getParentFunction() {
+        return parentFunction;
     }
 
-    public void setParentMenu(DJMenu parentMenu) {
-        this.parentMenu = parentMenu;
+    public void setParentFunction(DJFunction parentFunction) {
+        this.parentFunction = parentFunction;
     }
 
     @Override
@@ -143,9 +148,9 @@ public class DJMenu implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DJMenu menu = (DJMenu) o;
+        DJFunction function = (DJFunction) o;
 
-        if (id != null ? !id.equals(menu.id) : menu.id != null) return false;
+        if (id != null ? !id.equals(function.id) : function.id != null) return false;
 
         return true;
     }

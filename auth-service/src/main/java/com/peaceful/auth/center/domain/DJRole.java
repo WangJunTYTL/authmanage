@@ -1,5 +1,7 @@
 package com.peaceful.auth.center.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -7,36 +9,40 @@ import java.util.*;
 /**
  * Created by wangjun on 14-4-15.
  */
-@Entity(name = "role")
+@Entity(name = "t_role")
 public class DJRole implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer id;
     public String name;
     public String operator;
-    public int isdel;
+    @Column(name = "is_del")
+    public int isDel;
     public String description;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "create_time")
     public Date createTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "update_time")
-    public Date updateTime= new Date();
+    public Date updateTime = new Date();
     @ManyToOne(cascade = {CascadeType.MERGE})
     public DJSystem system = new DJSystem();
     @ManyToMany(mappedBy = "roles")
     public Set<DJUser> users = new HashSet<DJUser>();
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-            name="menu_role",
-            inverseJoinColumns={@JoinColumn(name="menus_id")},
-            joinColumns={@JoinColumn(name="roles_id")}
+            name = "t_function_role",
+            inverseJoinColumns = {@JoinColumn(name = "functions_id")},
+            joinColumns = {@JoinColumn(name = "roles_id")}
     )
-    public Set<DJMenu> menus = new HashSet<DJMenu>();
+    public Set<DJFunction> functions = new HashSet<DJFunction>();
     @ManyToMany(mappedBy = "roles")
     public Set<DJResource> resources = new HashSet<DJResource>();
 
     public DJRole() {
 
     }
+
     public Integer getId() {
         return id;
     }
@@ -61,12 +67,12 @@ public class DJRole implements Serializable {
         this.operator = operator;
     }
 
-    public int getIsdel() {
-        return isdel;
+    public int getIsDel() {
+        return isDel;
     }
 
-    public void setIsdel(int isdel) {
-        this.isdel = isdel;
+    public void setIsDel(int isdel) {
+        this.isDel = isdel;
     }
 
     public String getDescription() {
@@ -109,12 +115,12 @@ public class DJRole implements Serializable {
         this.users = users;
     }
 
-    public Set<DJMenu> getMenus() {
-        return menus;
+    public Set<DJFunction> getFunctions() {
+        return functions;
     }
 
-    public void setMenus(Set<DJMenu> menus) {
-        this.menus = menus;
+    public void setFunctions(Set<DJFunction> functions) {
+        this.functions = functions;
     }
 
     public Set<DJResource> getResources() {
@@ -142,7 +148,6 @@ public class DJRole implements Serializable {
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
-
 
 
 }

@@ -43,7 +43,7 @@
                             <input type="text" class="form-control" placeholder="真实名字" name="name">
                         </div>--%>
 
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" value="1" checked name="isdel">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" value="1" checked name="isDel">
                         上线
 
                         <br><br>

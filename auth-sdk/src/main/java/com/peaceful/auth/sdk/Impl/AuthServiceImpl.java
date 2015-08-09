@@ -145,13 +145,13 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
     }
 
     @Deprecated
-    public String getMenu(String menukey, String attribute, int type, String email) {
+    public String getFunction(String menukey, String attribute, int type, String email) {
         JSONUser user = getUser(email);
-        List<JSONMenu> menus = user.menus;
-        JSONMenu res_menu = null;
+        List<JSONFunction> menus = user.functions;
+        JSONFunction res_menu = null;
         String res = null;
-        for (JSONMenu menu : menus) {
-            if (menu.menukey.equals(menukey)) {
+        for (JSONFunction menu : menus) {
+            if (menu.functionKey.equals(menukey)) {
                 res_menu = menu;
             }
         }
@@ -173,12 +173,12 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         return res;
     }
 
-    public JSONMenu getMenu(String menukey, String email) {
+    public JSONFunction getFunction(String functionKey, String email) {
         JSONUser user = getUser(email);
-        List<JSONMenu> menus = user.menus;
-        JSONMenu res_menu = null;
-        for (JSONMenu menu : menus) {
-            if (menu.menukey.equals(menukey)) {
+        List<JSONFunction> menus = user.functions;
+        JSONFunction res_menu = null;
+        for (JSONFunction menu : menus) {
+            if (menu.functionKey.equals(functionKey)) {
                 res_menu = menu;
             }
         }
@@ -246,7 +246,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         data.put("password", user.getPassword());
         data.put("cascade_user", String.valueOf(cascade_user));
         data.put("operator", user.operator);
-        data.put("isdel", String.valueOf(user.isdel));
+        data.put("isDel", String.valueOf(user.isdel));
         data.put("systemId", publicServiceURL.system_id);
         if (cascade_user) {
             if (roleIds != null) {
@@ -272,7 +272,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         data.put("id", String.valueOf(role.id));
         data.put("name", role.name);
         data.put("cascade_menu", String.valueOf(cascade_menu));
-        data.put("isdel", String.valueOf(role.isdel));
+        data.put("isDel", String.valueOf(role.isdel));
         data.put("description", role.description);
         data.put("operator", role.operator);
         data.put("systemId", publicServiceURL.system_id);
@@ -286,8 +286,8 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
     }
 
     @Override
-    public List<JSONMenu> getMenusOfSystem() {
-        return JSON.parseArray(HttpUtils.get(publicServiceURL.find_menus), JSONMenu.class);
+    public List<JSONFunction> getFunctionsOfSystem() {
+        return JSON.parseArray(HttpUtils.get(publicServiceURL.find_menus), JSONFunction.class);
     }
 
     @Override

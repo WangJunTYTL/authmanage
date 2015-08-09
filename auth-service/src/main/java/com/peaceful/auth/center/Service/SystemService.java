@@ -1,6 +1,6 @@
 package com.peaceful.auth.center.Service;
 
-import com.peaceful.auth.center.domain.DJMenu;
+import com.peaceful.auth.center.domain.DJFunction;
 import com.peaceful.auth.center.domain.DJRole;
 import com.peaceful.auth.center.domain.DJSystem;
 
@@ -27,12 +27,12 @@ public interface SystemService {
     List<DJRole> findRolesBySystemId(Integer systemId);
 
     /**
-     * 所有的menu，并级联其父对象
+     * 所有的function，并级联其父对象
      *
      * @param systemId
      * @return
      */
-    List<DJMenu> findMenusBySystemId(Integer systemId);
+    List<DJFunction> findFunctionsBySystemId(Integer systemId);
 
     DJSystem findLiveSystemBySystemId(Integer systemId);
 
@@ -40,7 +40,7 @@ public interface SystemService {
 
     List<DJSystem> findResourcesSortBySystem();
 
-    List<DJSystem> findMenusSortBySystem();
+    List<DJSystem> findFunctionsSortBySystem();
 
 
     List<DJSystem> findAllSystems();

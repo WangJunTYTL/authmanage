@@ -33,23 +33,23 @@ public interface AuthService {
     /**
      * 根据指定用户渲染菜单（即生成一段html标记语言），该方法已弃用，为了更灵活的生成菜单样式，建议自己去实现生成html
      *
-     * @param menukey
+     * @param functionKey
      * @param attribute
      * @param type
      * @param email
      * @return
      */
     @Deprecated
-    String getMenu(String menukey, String attribute, int type, String email);
+    String getFunction(String functionKey, String attribute, int type, String email);
 
     /**
      * 根据当前用户获得菜单对象
      *
-     * @param menukey
+     * @param functionKey
      * @param email
      * @return
      */
-    JSONMenu getMenu(String menukey, String email);
+    JSONFunction getFunction(String functionKey, String email);
 
     /**
      * 检测访问某个url的权限
@@ -109,10 +109,10 @@ public interface AuthService {
      *
      * @param role
      * @param cascade_role
-     * @param menuIds
+     * @param functionIds
      * @return
      */
-    Response updateRole(JSONRole role, boolean cascade_role, Integer[] menuIds);
+    Response updateRole(JSONRole role, boolean cascade_role, Integer[] functionIds);
 
 
     /**
@@ -120,7 +120,7 @@ public interface AuthService {
      *
      * @return
      */
-    List<JSONMenu> getMenusOfSystem();
+    List<JSONFunction> getFunctionsOfSystem();
 
     /**
      * 得到系统内所有的（包括下线的）角色信息，请注意本方法取得的数据不会被缓存，

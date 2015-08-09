@@ -28,7 +28,7 @@ public class ResourceDaoImpl implements ResourceDao {
 
     @Override
     public DJResource findResourceByResourceUrl(String url,Integer systemId) {
-        List result = sessionFactory.getCurrentSession().createQuery("from resource where pattern = ? and system.id = ?").setString(0, url).setInteger(1,systemId).list();
+        List result = sessionFactory.getCurrentSession().createQuery("from t_resource where pattern = ? and system.id = ?").setString(0, url).setInteger(1,systemId).list();
         if (result != null && result.size() > 0) {
             return (DJResource) result.get(0);
         }

@@ -36,34 +36,34 @@
         <jsp:include page="/resources/pages/modal.jsp"></jsp:include>
         <div class="col-sm-10" role="main">
             <div class="bs-callout bs-callout-warning" id="jquery-required" style="margin-top: 30px;">
-                <h4>菜单管理>>添加菜单</h4>
+                <h4>功能管理>>添加功能</h4>
 
                 <div>
-                    <form action="/admin/addMenu.do" method="post">
+                    <form action="/admin/add/function.do" method="post">
                         <div class="input-group">
                             <span class="input-group-addon">&nbsp;&nbsp;key</span>
-                            <input type="text" class="form-control" placeholder="你的菜单要有一个唯一的标识" name="menukey"
-                                   required="true" message="菜单唯一标识是必须的">
+                            <input type="text" class="form-control" placeholder="你的功能要有一个唯一的标识" name="functionKey"
+                                   required="true" message="功能唯一标识是必须的">
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-addon">名字</span>
-                            <input type="text" class="form-control" placeholder="菜单名字" name="name" required="true"
-                                   message="菜单名字是必须的">
+                            <input type="text" class="form-control" placeholder="功能名字" name="name" required="true"
+                                   message="功能名字是必须的">
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-addon">&nbsp;&nbsp;&nbsp;url</span>
-                            <input type="text" class="form-control" placeholder="菜单若有url,请填写对应的url" name="url">
+                            <input type="text" class="form-control" placeholder="功能若有url,请填写对应的url" name="url">
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-addon">描述</span>
-                            <input type="text" class="form-control" placeholder="简单描述下这个个菜单" name="description">
+                            <input type="text" class="form-control" placeholder="简单描述下这个个功能" name="description">
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"
                                                                                                        value="1" checked
-                                                                                                       name="isdel">
+                                                                                                       name="isDel">
                         上线
 
                         <br><br>
@@ -84,10 +84,10 @@
                         </div>
 
                         <br>
-                        <h4 class="bs-callout-warning">所属上一级菜单</h4>
+                        <h4 class="bs-callout-warning">所属上一级功能</h4>
 
                         <div class="input-group" id="groupList">
-                            <input id="funIds" type="hidden" name="parentMenu.id"/>
+                            <input id="funIds" type="hidden" name="parentFunction.id"/>
                             <div class="auth-item fun-item">
                                 <ul class="item-box ztree"></ul>
                             </div>
@@ -130,19 +130,19 @@
 
 
     function getMenus(system) {
-        $.getJSON("/admin/" + system.value + "/getMenus.do", function (date) {
-            var menus = date.menus;
+        $.getJSON("/admin/" + system.value + "/find/functions.do", function (date) {
+            var functions = date.functions;
             var treeData = [];
-            for (var i = 0; i < menus.length; i++) {
+            for (var i = 0; i < functions.length; i++) {
                 var data = {};
-                data.id = menus[i].id;
-                if (menus[i].parentId == null)
+                data.id = functions[i].id;
+                if (functions[i].parentId == null)
                     data.pId = 0;
                 else
-                    data.pId = menus[i].parentId;
-                if (menus[i].isdel == 0)
+                    data.pId = functions[i].parentId;
+                if (functions[i].isDel == 0)
                     data.chkDisabled=true;
-                data.name = menus[i].name;
+                data.name = functions[i].name;
                 treeData.push(data);
             }
 

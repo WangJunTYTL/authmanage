@@ -1,5 +1,7 @@
 package com.peaceful.auth.center.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -7,7 +9,7 @@ import java.util.*;
 /**
  * Created by wangjun on 14-4-15.
  */
-@Entity(name = "user")
+@Entity(name = "t_user")
 public class DJUser implements Serializable {
 
     @Id
@@ -19,13 +21,16 @@ public class DJUser implements Serializable {
     @Column(name = "password_state")
     public int passwordState; // 0 初始密码，1 已修改
     public String operator;
-    public int isdel;
+    @Column(name = "is_del")
+    public int isDel;
     @ManyToOne(cascade = {CascadeType.MERGE})
     public DJSystem system = new DJSystem();
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     public List<DJRole> roles = new ArrayList<DJRole>();
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "create_time")
     public Date createTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "update_time")
     public Date updateTime = new Date();
 
@@ -53,12 +58,12 @@ public class DJUser implements Serializable {
         this.operator = operator;
     }
 
-    public int getIsdel() {
-        return isdel;
+    public int getIsDel() {
+        return isDel;
     }
 
-    public void setIsdel(int isdel) {
-        this.isdel = isdel;
+    public void setIsDel(int isDel) {
+        this.isDel = isDel;
     }
 
     public Date getCreateTime() {

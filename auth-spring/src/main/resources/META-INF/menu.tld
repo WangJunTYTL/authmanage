@@ -11,7 +11,7 @@
         <tag-class>com.peaceful.auth.spring.MenuUtils</tag-class>
         <body-content>empty</body-content>
         <attribute>
-            <name>menuKey</name>
+            <name>functionKey</name>
             <required>true</required>
             <rtexprvalue>false</rtexprvalue>
         </attribute>

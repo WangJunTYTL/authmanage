@@ -44,7 +44,7 @@
                             <span class="input-group-addon">描述</span>
                             <input type="text" class="form-control" placeholder="简单描述下这个个菜单" name="description">
                         </div>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" value="1" checked name="isdel">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" value="1" checked name="isDel">
                         上线
 
                         <br><br>

@@ -47,7 +47,7 @@
 
                                 <c:forEach items="${requestScope.systems}" var="system">
                                     <c:choose>
-                                        <c:when test="${system.isdel == 1}">
+                                        <c:when test="${system.isDel == 1}">
                                             <tr>
                                                 <td>${system.id}</td>
                                                 <td class="text-primary"><a href="/admin/${system.id}/updateSystem.do">${system.name}</a></td>

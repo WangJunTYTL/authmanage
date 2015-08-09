@@ -56,7 +56,7 @@
 
                         <div class="input-group">
                             <span class="input-group-addon">标识</span>
-                            <input type="text" class="form-control" placeholder="SDK与服务中心通信key，系统会自动生成" name="appkey" value="${system.appkey}" readonly>
+                            <input type="text" class="form-control" placeholder="SDK与服务中心通信key，系统会自动生成" name="appKey" value="${system.appKey}" readonly>
                         </div>
 
                         <div class="input-group">
@@ -69,17 +69,17 @@
                             <c:when test="${empty system}">
                                 <input type="checkbox"
                                        value="1"
-                                       checked name="isdel"> 上线
+                                       checked name="isDel"> 上线
                             </c:when>
-                            <c:when test="${system.isdel == 1}">
+                            <c:when test="${system.isDel == 1}">
                                 <input type="checkbox"
                                        value="1"
-                                       checked name="isdel"> 上线
+                                       checked name="isDel"> 上线
                             </c:when>
                             <c:otherwise>
                                 <input type="checkbox"
                                        value="1"
-                                        name="isdel"> 上线
+                                        name="isDel"> 上线
                             </c:otherwise>
                         </c:choose>
 

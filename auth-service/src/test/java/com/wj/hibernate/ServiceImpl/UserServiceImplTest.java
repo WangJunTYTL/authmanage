@@ -80,7 +80,7 @@ public class UserServiceImplTest {
     @Test
     public void testUpdateUser() throws Exception {
         DJUser user = userService.findUserByUserId(2);
-        user.isdel=1;
+        user.isDel=1;
         DJRole role = new DJRole();
         role.id=1;
         List roles = new ArrayList();

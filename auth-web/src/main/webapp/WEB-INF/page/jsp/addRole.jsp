@@ -48,7 +48,7 @@
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"
                                                                                                        value="1"
-                                                                                                       checked name="isdel"> 上线
+                                                                                                       checked name="isDel"> 上线
 
                         <br><br>
                         <h4 class="bs-callout-warning">所属系统</h4>

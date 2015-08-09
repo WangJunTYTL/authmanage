@@ -46,31 +46,31 @@
 
                                 <c:forEach items="${requestScope.systems}" var="system">
                                     <c:choose>
-                                        <c:when test="${system.isdel == 1}">
+                                        <c:when test="${system.isDel == 1}">
                                             <tr>
                                                 <td colspan="4">所属系统------>${system.name}</td>
                                             </tr>
-                                            <c:forEach items="${system.menus}" var="menu">
+                                            <c:forEach items="${system.functions}" var="function">
                                                 <c:choose>
-                                                    <c:when test="${menu.isdel == 1}">
+                                                    <c:when test="${function.isDel == 1}">
                                                         <tr>
-                                                            <td>${menu.menukey}</td>
+                                                            <td>${function.functionKey}</td>
                                                             <td class="text-primary"><a
-                                                                    href="/admin/${menu.id}/updateMenu.do">${menu.name}<span style="color: #808080;">(${system.name})</span></a>
+                                                                    href="/admin/${function.id}/update/function.do">${function.name}<span style="color: #808080;">(${system.name})</span></a>
                                                             </td>
-                                                            <td>${menu.url}</td>
-                                                            <td>${menu.operator}</td>
+                                                            <td>${function.url}</td>
+                                                            <td>${function.operator}</td>
                                                             </td>
                                                         </tr>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <tr class="alert-danger">
-                                                            <td>${menu.id}</td>
+                                                            <td>${function.id}</td>
                                                             <td class="text-primary"><a
-                                                                    href="/admin/${menu.id}/updateMenu.do">${menu.name}<span style="color: #808080;">(${system.name})</span></a>
+                                                                    href="/admin/${function.id}/update/function.do">${function.name}<span style="color: #808080;">(${system.name})</span></a>
                                                             </td>
-                                                            <td>${menu.url}</td>
-                                                            <td>${menu.operator}</td>
+                                                            <td>${function.url}</td>
+                                                            <td>${function.operator}</td>
                                                             </td>
                                                         </tr>
                                                     </c:otherwise>
@@ -82,27 +82,27 @@
                                             <tr class="alert-danger">
                                                 <td colspan="4">所属系统------>${system.name}</td>
                                             </tr>
-                                            <c:forEach items="${system.menus}" var="menu">
+                                            <c:forEach items="${system.functions}" var="function">
                                                 <c:choose>
-                                                    <c:when test="${menu.isdel == 1}">
+                                                    <c:when test="${function.isDel == 1}">
                                                         <tr>
-                                                            <td>${menu.id}</td>
+                                                            <td>${function.id}</td>
                                                             <td class="text-primary"><a
-                                                                    href="/admin/${menu.id}/updateMenu.do">${menu.name}<span style="color: #808080;">(${system.name})</span></a>
+                                                                    href="/admin/${function.id}/update/function.do">${function.name}<span style="color: #808080;">(${system.name})</span></a>
                                                             </td>
-                                                            <td>${menu.url}</td>
-                                                            <td>${menu.operator}</td>
+                                                            <td>${function.url}</td>
+                                                            <td>${function.operator}</td>
                                                             </td>
                                                         </tr>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <tr class="alert-danger">
-                                                            <td>${menu.id}</td>
+                                                            <td>${function.id}</td>
                                                             <td class="text-primary"><a
-                                                                    href="/admin/${menu.id}/updateMenu.do">${menu.name}<span style="color: #808080;">(${system.name})</span></a>
+                                                                    href="/admin/${function.id}/update/function.do">${function.name}<span style="color: #808080;">(${system.name})</span></a>
                                                             </td>
-                                                            <td>${menu.url}</td>
-                                                            <td>${menu.operator}</td>
+                                                            <td>${function.url}</td>
+                                                            <td>${function.operator}</td>
                                                             </td>
                                                         </tr>
                                                     </c:otherwise>

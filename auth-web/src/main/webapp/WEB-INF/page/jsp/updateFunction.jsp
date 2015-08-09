@@ -35,58 +35,58 @@
         <jsp:include page="/resources/pages/modal.jsp"></jsp:include>
         <div class="col-sm-10" role="main">
             <div class="bs-callout bs-callout-warning" id="jquery-required" style="margin-top: 30px;">
-                <h4>菜单管理>>修改菜单</h4>
+                <h4>功能管理>>修改功能</h4>
                 <br>
 
                 <div>
-                    <form action="/admin/updateMenu.do" method="post">
+                    <form action="/admin/update/function.do" method="post">
                         <div class="input-group">
                             <span class="input-group-addon">&nbsp;&nbsp;key</span>
-                            <input type="text" class="form-control" placeholder="你的菜单要有一个唯一的标识" name="menukey"
-                                   value="${menu.menukey}" required="true" message="菜单唯一标识是必须的">
+                            <input type="text" class="form-control" placeholder="你的功能要有一个唯一的标识" name="functionKey"
+                                   value="${function.functionKey}" required="true" message="功能唯一标识是必须的">
                         </div>
 
 
                         <div class="input-group">
                             <span class="input-group-addon">名字</span>
-                            <input type="text" class="form-control" placeholder="角色名字" name="name" value="${menu.name}"
-                                   required="true" message="菜单名字是必须的">
-                            <input type="hidden" class="form-control" placeholder="角色名字" name="id" value="${menu.id}">
+                            <input type="text" class="form-control" placeholder="角色名字" name="name" value="${function.name}"
+                                   required="true" message="功能名字是必须的">
+                            <input type="hidden" class="form-control" placeholder="角色名字" name="id" value="${function.id}">
                             <input type="hidden" class="form-control" placeholder="角色名字" name="systemId"
-                                   value="${menu.system.id}">
+                                   value="${function.system.id}">
                             <input type="hidden" class="form-control" placeholder="角色名字" name="createTime"
-                                   value="${menu.createTime}">
+                                   value="${function.createTime}">
                             <input type="hidden" class="form-control" placeholder="角色名字" name="operator"
-                                   value="${menu.operator}">
+                                   value="${function.operator}">
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-addon">&nbsp;&nbsp;&nbsp;url</span>
-                            <input type="text" class="form-control" placeholder="菜单若有url,请填写对应的url" name="url"
-                                   value="${menu.url}">
+                            <input type="text" class="form-control" placeholder="功能若有url,请填写对应的url" name="url"
+                                   value="${function.url}">
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-addon">描述</span>
                             <input type="text" class="form-control" placeholder="简单描述下这个角色" name="description"
-                                   value="${menu.description}">
+                                   value="${function.description}">
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <c:choose>
-                            <c:when test="${empty menu}">
+                            <c:when test="${empty function}">
                                 <input type="checkbox"
                                        value="1"
-                                       checked name="isdel"> 上线
+                                       checked name="isDel"> 上线
                             </c:when>
-                            <c:when test="${menu.isdel == 1}">
+                            <c:when test="${function.isDel == 1}">
                                 <input type="checkbox"
                                        value="1"
-                                       checked name="isdel"> 上线
+                                       checked name="isDel"> 上线
                             </c:when>
                             <c:otherwise>
                                 <input type="checkbox"
                                        value="1"
-                                       name="isdel"> 上线
+                                       name="isDel"> 上线
                             </c:otherwise>
                         </c:choose>
 
@@ -96,8 +96,8 @@
                         <div class="input-group" id="roleList">
                             <c:forEach items="${system.roles}" var="role">
                                 <c:set var="iscontain" value="false"/>
-                                <c:forEach var="menuRole" items="${menu.roles}">
-                                    <c:if test="${menuRole eq role}">
+                                <c:forEach var="functionRole" items="${function.roles}">
+                                    <c:if test="${functionRole eq role}">
                                         <c:set var="iscontain" value="true"/>
                                     </c:if>
                                 </c:forEach>
@@ -113,10 +113,10 @@
                         </div>
                         <br>
 
-                        <h4 class="bs-callout-warning">所属上一级菜单</h4>
+                        <h4 class="bs-callout-warning">所属上一级功能</h4>
 
                         <div class="input-group" id="groupList">
-                            <input id="funIds" type="hidden" name="parentMenu.id"/>
+                            <input id="funIds" type="hidden" name="parentFunction.id"/>
 
                             <div class="auth-item fun-item">
                                 <ul class="item-box ztree"></ul>
@@ -138,23 +138,23 @@
 <script>
     $(
             function () {
-                $.getJSON("/admin/" + ${system.id} + "/getMenus.do", function (date) {
-                    var menus = date.menus;
+                $.getJSON("/admin/" + ${system.id} + "/find/functions.do", function (date) {
+                    var functions = date.functions;
                     var treeData = [];
-                    for (var i = 0; i < menus.length; i++) {
+                    for (var i = 0; i < functions.length; i++) {
                         var data = {};
-                        data.id = menus[i].id;
-                        if (menus[i].parentId == null)
+                        data.id = functions[i].id;
+                        if (functions[i].parentId == null)
                             data.pId = 0;
                         else
-                            data.pId = menus[i].parentId;
-                        data.name = menus[i].name;
-                        if (menus[i].id == ${menu.parentMenu==null?-1:menu.parentMenu.id}){
+                            data.pId = functions[i].parentId;
+                        data.name = functions[i].name;
+                        if (functions[i].id == ${function.parentFunction==null?-1:function.parentFunction.id}){
                             data.checked = true;
                         }
-                        if (menus[i].id == ${menu.id})
+                        if (functions[i].id == ${function.id})
                             data.chkDisabled=true;
-                        if (menus[i].isdel == 0)
+                        if (functions[i].isDel == 0)
                             data.chkDisabled=true;
                         data.open=true;
                         treeData.push(data);

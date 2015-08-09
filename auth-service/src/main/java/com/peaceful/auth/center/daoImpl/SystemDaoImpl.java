@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import sun.security.provider.MD5;
 
 import java.util.*;
 
@@ -39,7 +38,7 @@ public class SystemDaoImpl implements SystemDao {
 
     @Override
     public DJSystem findSystemByAppkay(String appkey) {
-        List result = sessionFactory.getCurrentSession().createQuery("from DJSystem where appkey = ?").setString(0, appkey).list();
+        List result = sessionFactory.getCurrentSession().createQuery("from DJSystem where appKey = ?").setString(0, appkey).list();
         if (result != null && result.size() > 0) {
             return (DJSystem) result.get(0);
         }
@@ -48,7 +47,7 @@ public class SystemDaoImpl implements SystemDao {
 
     @Override
     public DJSystem findSystemByAppkayAndSecret(String appkey, String secret) {
-        List<DJSystem> result = sessionFactory.getCurrentSession().createQuery("from DJSystem as a where a .appkey = ?  and a.secret = ?").setString(0, appkey).setString(1,secret).list();
+        List<DJSystem> result = sessionFactory.getCurrentSession().createQuery("from DJSystem as a where a .appKey = ?  and a.secret = ?").setString(0, appkey).setString(1,secret).list();
         if (result != null && result.size() > 0)
             return result.get(0);
         else
@@ -57,19 +56,19 @@ public class SystemDaoImpl implements SystemDao {
 
     public DJSystem findLiveSystemById(Integer id) {
         DJSystem system = (DJSystem) sessionFactory.getCurrentSession().get(DJSystem.class, id);
-        if (system == null || system.isdel != 1)
+        if (system == null || system.isDel != 1)
             return null;
         else {
             Collection<DJRole> liveRoles = sessionFactory.getCurrentSession().createFilter(
                     system.roles,
-                    ("where this.isdel = 1 ")
+                    ("where this.isDel = 1 ")
             ).list();
             Set<DJRole> roles = new HashSet<DJRole>();
             for (DJRole role : liveRoles) {
                 Set<DJUser> users = new HashSet<DJUser>();
                 Collection<DJUser> liveUsers = sessionFactory.getCurrentSession().createFilter(
                         role.users,
-                        ("where this.isdel = 1 ")
+                        ("where this.isDel = 1 ")
                 ).list();
                 for (DJUser user : liveUsers) {
                     users.add(user);
@@ -78,15 +77,15 @@ public class SystemDaoImpl implements SystemDao {
                 roles.add(role);
             }
             for (DJRole role : liveRoles) {
-                Set<DJMenu> menus = new HashSet<DJMenu>();
-                Collection<DJMenu> liveMenus = sessionFactory.getCurrentSession().createFilter(
-                        role.menus,
-                        ("where this.isdel = 1 ")
+                Set<DJFunction> functions = new HashSet<DJFunction>();
+                Collection<DJFunction> liveFunctions = sessionFactory.getCurrentSession().createFilter(
+                        role.functions,
+                        ("where this.isDel = 1 ")
                 ).list();
-                for (DJMenu menu : liveMenus) {
-                    menus.add(menu);
+                for (DJFunction function : liveFunctions) {
+                    functions.add(function);
                 }
-                role.menus = menus;
+                role.functions = functions;
                 roles.add(role);
             }
             system.roles = roles;

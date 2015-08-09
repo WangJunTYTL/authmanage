@@ -1,10 +1,10 @@
 package com.peaceful.auth.web.util;
 
-import com.peaceful.auth.center.domain.DJMenu;
+import com.peaceful.auth.center.domain.DJFunction;
 import com.peaceful.auth.center.domain.DJResource;
 import com.peaceful.auth.center.domain.DJRole;
 import com.peaceful.auth.center.domain.DJUser;
-import com.peaceful.auth.data.domain.JSONMenu;
+import com.peaceful.auth.data.domain.JSONFunction;
 import com.peaceful.auth.data.domain.JSONResource;
 import com.peaceful.auth.data.domain.JSONRole;
 import com.peaceful.auth.data.domain.JSONUser;
@@ -27,18 +27,18 @@ public class TransitionUtils {
         jsonRole.setOperator(role.getOperator());
         jsonRole.setDescription(role.getDescription());
         jsonRole.setCreateTime(role.getCreateTime());
-        jsonRole.setIsdel(role.getIsdel());
+        jsonRole.setIsdel(role.getIsDel());
         return jsonRole;
     }
-    public static JSONMenu toJSONMenu(DJMenu menu) {
+    public static JSONFunction toJSONFunction(DJFunction menu) {
         if (menu == null)
             return null;
-        JSONMenu jsonMenu = new JSONMenu();
+        JSONFunction jsonMenu = new JSONFunction();
         jsonMenu.setId(menu.getId());
         jsonMenu.setName(menu.getName());
-        jsonMenu.setParentId(menu.getParentMenu()==null?null:menu.getParentMenu().id);
-        jsonMenu.setIsdel(menu.isdel);
-        jsonMenu.setMenukey(menu.menukey);
+        jsonMenu.setParentId(menu.getParentFunction()==null?null:menu.getParentFunction().id);
+        jsonMenu.setIsDel(menu.isDel);
+        jsonMenu.setFunctionKey(menu.functionKey);
         jsonMenu.setUrl(menu.url);
         return jsonMenu;
     }
@@ -73,23 +73,23 @@ public class TransitionUtils {
         }
         return jsonResources;
     }
-    public static List<JSONMenu> batchToJSONMenu(List<DJMenu> menus) {
+    public static List<JSONFunction> batchToJSONFunction(List<DJFunction> menus) {
         if (menus == null) {
             return null;
         }
-        List<JSONMenu> jsonMenus = new ArrayList<JSONMenu>();
-        for (DJMenu menu : menus) {
-            jsonMenus.add(toJSONMenu(menu));
+        List<JSONFunction> jsonMenus = new ArrayList<JSONFunction>();
+        for (DJFunction menu : menus) {
+            jsonMenus.add(toJSONFunction(menu));
         }
         return jsonMenus;
     }
-    public static List<JSONMenu> batchToJSONMenu(Set<DJMenu> menus) {
+    public static List<JSONFunction> batchToJSONFunction(Set<DJFunction> menus) {
         if (menus == null) {
             return null;
         }
-        List<JSONMenu> jsonMenus = new ArrayList<JSONMenu>();
-        for (DJMenu menu : menus) {
-            jsonMenus.add(toJSONMenu(menu));
+        List<JSONFunction> jsonMenus = new ArrayList<JSONFunction>();
+        for (DJFunction menu : menus) {
+            jsonMenus.add(toJSONFunction(menu));
         }
         return jsonMenus;
     }
@@ -117,7 +117,7 @@ public class TransitionUtils {
         jsonUser.name = user.getName();
         jsonUser.passwordState=user.passwordState;
         jsonUser.id = user.getId();
-        jsonUser.isdel=user.isdel;
+        jsonUser.isdel=user.isDel;
         return jsonUser;
     }
 

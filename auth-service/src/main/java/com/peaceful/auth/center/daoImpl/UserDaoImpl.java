@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 
 
     public DJUser findUserByUserName(String name, Integer systemId) {
-        List result = sessionFactory.getCurrentSession().createQuery("from user where email = ? and system.id = ?").setString(0, name).setInteger(1, systemId).list();
+        List result = sessionFactory.getCurrentSession().createQuery("from t_user where email = ? and system.id = ?").setString(0, name).setInteger(1, systemId).list();
         if (result != null && result.size() > 0) {
             return (DJUser) result.get(0);
         }
@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public DJUser findUserByUserNameAndPassword(String name, Integer systemId,String password) {
-        List result = sessionFactory.getCurrentSession().createQuery("from user where email = ? and system.id = ? and password = ?").setString(0, name).setInteger(1, systemId).setString(2,password).list();
+        List result = sessionFactory.getCurrentSession().createQuery("from t_user where email = ? and system.id = ? and password = ?").setString(0, name).setInteger(1, systemId).setString(2,password).list();
         if (result != null && result.size() > 0) {
             return (DJUser) result.get(0);
         }
@@ -63,18 +63,18 @@ public class UserDaoImpl implements UserDao {
         Set<DJResource> result = new HashSet<DJResource>();
         List<DJResource> resourceList = new ArrayList<DJResource>();
         DJUser user = findUserByUserId(uid);
-        if (user == null || user.isdel != 1) {
+        if (user == null || user.isDel != 1) {
             return resourceList;
         }
         Collection<DJRole> liveRoles = sessionFactory.getCurrentSession().createFilter(
                 user.roles,
-                ("where this.isdel = 1 and this.system.id = ?")
+                ("where this.isDel = 1 and this.system.id = ?")
         ).setInteger(0, systemId).list();
 
         for (DJRole role : liveRoles) {
             Collection<DJResource> resources = sessionFactory.getCurrentSession().createFilter(
                     role.resources,
-                    ("where this.isdel = 1")
+                    ("where this.isDel = 1")
             ).list();
             for (DJResource resource : resources) {
                 result.add(resource);
@@ -86,38 +86,38 @@ public class UserDaoImpl implements UserDao {
         return resourceList;
     }
 
-    public List<DJMenu> findCanAccessMenusOfUserOfSystem(Integer id, Integer systemId) {
-        Set<DJMenu> result = new HashSet<DJMenu>();
-        List<DJMenu> menuList = new ArrayList<DJMenu>();
+    public List<DJFunction> findCanAccessFunctionsOfUserOfSystem(Integer id, Integer systemId) {
+        Set<DJFunction> result = new HashSet<DJFunction>();
+        List<DJFunction> functionList = new ArrayList<DJFunction>();
         DJUser user = findUserByUserId(id);
-        if (user == null || user.isdel != 1) {
-            return menuList;
+        if (user == null || user.isDel != 1) {
+            return functionList;
         }
         Collection<DJRole> liveRoles = sessionFactory.getCurrentSession().createFilter(
                 user.roles,
-                ("where this.isdel = 1 and this.system.id = ?")
+                ("where this.isDel = 1 and this.system.id = ?")
         ).setInteger(0, systemId).list();
 
         for (DJRole role : liveRoles) {
-            Collection<DJMenu> resources = sessionFactory.getCurrentSession().createFilter(
-                    role.menus,
-                    ("where this.isdel = 1")
+            Collection<DJFunction> resources = sessionFactory.getCurrentSession().createFilter(
+                    role.functions,
+                    ("where this.isDel = 1")
             ).list();
-            for (DJMenu menu : resources) {
-                result.add(menu);
+            for (DJFunction function : resources) {
+                result.add(function);
             }
         }
-        for (DJMenu menu : result) {
-            menuList.add(menu);
+        for (DJFunction function : result) {
+            functionList.add(function);
         }
-        return menuList;
+        return functionList;
     }
 
     public List<DJRole> findNowRolesOfUserOfSystem(Integer id, Integer systemId) {
         DJUser user = findUserByUserId(id);
         Collection<DJRole> liveRoles = sessionFactory.getCurrentSession().createFilter(
                 user.roles,
-                ("where this.isdel = 1 and this.system.id = ?")
+                ("where this.isDel = 1 and this.system.id = ?")
         ).setInteger(0, systemId).list();
         return (List<DJRole>) liveRoles;
     }

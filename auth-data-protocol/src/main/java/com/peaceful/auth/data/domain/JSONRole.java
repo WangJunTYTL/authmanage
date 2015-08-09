@@ -14,7 +14,7 @@ public class JSONRole implements Serializable {
     public String operator;
     public String description;
     public List<JSONUser> users;
-    public List<JSONMenu> menus;
+    public List<JSONFunction> functions;
     public int isdel;
     public Date createTime;
     public List<JSONUser> getUsers() {
@@ -91,11 +91,11 @@ public class JSONRole implements Serializable {
         this.isdel = isdel;
     }
 
-    public List<JSONMenu> getMenus() {
-        return menus;
+    public List<JSONFunction> getFunctions() {
+        return functions;
     }
 
-    public void setMenus(List<JSONMenu> menus) {
-        this.menus = menus;
+    public void setFunctions(List<JSONFunction> functions) {
+        this.functions = functions;
     }
 }

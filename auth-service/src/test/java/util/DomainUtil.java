@@ -22,16 +22,16 @@ public class DomainUtil {
     public static DJAdministrator getAdministrator() {
         DJAdministrator djAdministrator = new DJAdministrator();
         djAdministrator.createTime = new Date();
-        djAdministrator.isdel = 1;
+        djAdministrator.isDel = 1;
         djAdministrator.name = "wj@163.com";
         return djAdministrator;
     }
 
-    public static DJMenu getMenu() {
-        DJMenu menu = new DJMenu();
+    public static DJFunction getMenu() {
+        DJFunction menu = new DJFunction();
         menu.createTime = new Date();
         menu.description = "this is menu";
-        menu.isdel = 1;
+        menu.isDel = 1;
         menu.operator = "it is me";
         menu.name = "菜单";
         menu.url = "url is http://";
@@ -42,7 +42,7 @@ public class DomainUtil {
         DJRole role = new DJRole();
         role.operator="it is me";
         role.createTime = new Date();
-        role.isdel=1;
+        role.isDel =1;
         role.name="this is role";
         return role;
     }
@@ -66,7 +66,7 @@ public class DomainUtil {
             DJRole role = new DJRole();
             role.operator="it is me "+i;
             role.createTime = new Date();
-            role.isdel=1;
+            role.isDel =1;
             role.name="this is role "+i;
             systems.add(role);
         }
@@ -84,13 +84,13 @@ public class DomainUtil {
         return systems;
     }
 
-    public static List<DJMenu> getMenuList(int size) {
-        List<DJMenu> systems = new ArrayList<DJMenu>();
+    public static List<DJFunction> getMenuList(int size) {
+        List<DJFunction> systems = new ArrayList<DJFunction>();
         for (int i = 0; i < size; i++) {
-            DJMenu menu = new DJMenu();
+            DJFunction menu = new DJFunction();
             menu.createTime = new Date();
             menu.description = "this is menu"+i;
-            menu.isdel = 1;
+            menu.isDel = 1;
             menu.operator = "it is me "+i;
             menu.name = "菜单 "+i;
             menu.url = "url is http:// "+i;

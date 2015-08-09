@@ -2,7 +2,7 @@ package com.peaceful.auth.center.ServiceImpl;
 
 import com.peaceful.auth.center.Service.SystemService;
 import com.peaceful.auth.center.dao.SystemDao;
-import com.peaceful.auth.center.domain.DJMenu;
+import com.peaceful.auth.center.domain.DJFunction;
 import com.peaceful.auth.center.domain.DJRole;
 import com.peaceful.auth.center.domain.DJSystem;
 import com.peaceful.auth.data.util.MD5Utils;
@@ -70,12 +70,12 @@ public class SystemServiceImpl implements SystemService {
 
 
     @Override
-    public List<DJMenu> findMenusBySystemId(Integer systemId) {
-        Set<DJMenu> menus = systemDao.findSystemById(systemId).menus;
-        List<DJMenu> result = new ArrayList<DJMenu>();
-        for (DJMenu menu : menus) {
-            logger.info("load parent menu {}", menu.parentMenu == null ? null : menu.parentMenu.id);
-            result.add(menu);
+    public List<DJFunction> findFunctionsBySystemId(Integer systemId) {
+        Set<DJFunction> functions = systemDao.findSystemById(systemId).functions;
+        List<DJFunction> result = new ArrayList<DJFunction>();
+        for (DJFunction function : functions) {
+            logger.info("load parent function {}", function.parentFunction == null ? null : function.parentFunction.id);
+            result.add(function);
         }
         return result;
     }
@@ -98,10 +98,10 @@ public class SystemServiceImpl implements SystemService {
         return djSystems;
     }
 
-    public List<DJSystem> findMenusSortBySystem() {
+    public List<DJSystem> findFunctionsSortBySystem() {
 
         List<DJSystem> djSystems = systemDao.findAllSystems();
-        HibernateSystemUtil.systemLoad(djSystems, HibernateSystemUtil.MENU);
+        HibernateSystemUtil.systemLoad(djSystems, HibernateSystemUtil.FUNCTION);
         return djSystems;
     }
 
@@ -111,7 +111,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     public void insertSystem(DJSystem system) {
-        system.setAppkey(MD5Utils.string2MD5(String.valueOf(System.nanoTime())));
+        system.setAppKey(MD5Utils.string2MD5(String.valueOf(System.nanoTime())));
         systemDao.inserte(system);
     }
 
@@ -135,15 +135,15 @@ public class SystemServiceImpl implements SystemService {
             logger.info("load roles {}", system.roles);
         } else if (loadType == HibernateSystemUtil.ROLEANDUSER) {
             logger.info("load roles {} and users", system.roles.size(), system.roles.iterator().hasNext());
-        } else if (loadType == HibernateSystemUtil.MENUANDPARENT) {
-            logger.info("load menus size {}", system.menus.size());
-            if (system.menus != null) {
-                for (DJMenu menu : system.menus) {
-                    logger.info("load menu {}", menu.parentMenu);
+        } else if (loadType == HibernateSystemUtil.FUNCTIONANDPARENT) {
+            logger.info("load functions size {}", system.functions.size());
+            if (system.functions != null) {
+                for (DJFunction function : system.functions) {
+                    logger.info("load function {}", function.parentFunction);
                 }
             }
-        } else if (loadType == HibernateSystemUtil.MENU) {
-            logger.info("load menus size {}", system.menus.size());
+        } else if (loadType == HibernateSystemUtil.FUNCTION) {
+            logger.info("load functions size {}", system.functions.size());
         } else if (loadType == HibernateSystemUtil.USER) {
             logger.info("load users size {}", system.users.size());
         } else if (loadType == HibernateSystemUtil.RESOURCE) {

@@ -9,12 +9,13 @@ import com.peaceful.auth.center.domain.DJResource;
 public interface ResourceDao {
 
     DJResource findResourceByResourceId(Integer id);
-    DJResource findResourceByResourceUrl(String url,Integer systemId);
 
-    abstract void inserte(DJResource resource);
+    DJResource findResourceByResourceUrl(String url, Integer systemId);
 
-    abstract void update(DJResource resource);
+    void inserte(DJResource resource);
 
-    abstract void delate(DJResource resource);
+    void update(DJResource resource);
+
+    void delate(DJResource resource);
 
 }

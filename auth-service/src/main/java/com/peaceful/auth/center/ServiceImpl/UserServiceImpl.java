@@ -2,7 +2,7 @@ package com.peaceful.auth.center.ServiceImpl;
 
 import com.peaceful.auth.center.Service.UserService;
 import com.peaceful.auth.center.dao.SystemDao;
-import com.peaceful.auth.center.domain.DJMenu;
+import com.peaceful.auth.center.domain.DJFunction;
 import com.peaceful.auth.center.domain.DJResource;
 import com.peaceful.auth.center.domain.DJRole;
 import com.peaceful.auth.center.dao.UserDao;
@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserService {
         return userDao.findCanAccessResourcesOfUserOfSystem(userId,systemId);
     }
 
-    public java.util.List<DJMenu> findCanAccressMenusOfCerrentSystemAndUser(Integer userId, Integer systemId) {
-        return userDao.findCanAccessMenusOfUserOfSystem(userId,systemId);
+    public java.util.List<DJFunction> findCanAccressFunctionsOfCerrentSystemAndUser(Integer userId, Integer systemId) {
+        return userDao.findCanAccessFunctionsOfUserOfSystem(userId, systemId);
     }
 
     public java.util.List<DJRole> findHasAuthOfUser(Integer userId, Integer systemId) {

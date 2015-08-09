@@ -1,6 +1,6 @@
 package com.wj.hibernate.ServiceImpl;
 
-import com.peaceful.auth.center.Service.MenuService;
+import com.peaceful.auth.center.Service.FunctionService;
 import com.peaceful.auth.center.Service.ResourceService;
 import com.peaceful.auth.center.Service.RoleService;
 import com.peaceful.auth.center.Service.SystemService;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class ResourceServiceImplTest {
 
-    MenuService menuService = null;
+    FunctionService menuService = null;
     SystemService systemService = null;
     RoleService roleService= null;
     ResourceService resourceService= null;
@@ -31,7 +31,7 @@ public class ResourceServiceImplTest {
     @org.junit.Before
     public void setUp() throws Exception {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
-        menuService = applicationContext.getBean("menuService", MenuService.class);
+        menuService = applicationContext.getBean("menuService", FunctionService.class);
         systemService = applicationContext.getBean("systemService", SystemService.class);
         roleService = applicationContext.getBean("roleService", RoleService.class);
         resourceService = applicationContext.getBean("resourceService", ResourceService.class);

@@ -2,7 +2,7 @@ package com.peaceful.auth.center.Service;
 
 import com.peaceful.auth.center.domain.DJResource;
 import com.peaceful.auth.center.domain.DJRole;
-import com.peaceful.auth.center.domain.DJMenu;
+import com.peaceful.auth.center.domain.DJFunction;
 import com.peaceful.auth.center.domain.DJUser;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public interface UserService {
      * @param systemId
      * @return
      */
-    List<DJMenu> findCanAccressMenusOfCerrentSystemAndUser(Integer userId, Integer systemId);
+    List<DJFunction> findCanAccressFunctionsOfCerrentSystemAndUser(Integer userId, Integer systemId);
 
     /**
      * 拥有的角色，去除下线的角色

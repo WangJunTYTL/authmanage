@@ -1,5 +1,7 @@
 package com.peaceful.auth.center.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * Created by wangjun on 14-4-15.
  */
-@Entity(name = "adminatrator")
+@Entity(name = "t_adminstrator")
 public class DJAdministrator implements Serializable {
 
     @Id
@@ -17,19 +19,13 @@ public class DJAdministrator implements Serializable {
     public Integer id;
     public String name;
     public String password;
-    public int isdel;
+    @Column(name = "is_del")
+    public int isDel;
     public String operator;
-
-    public String getOperator() {
-        return operator;
-    }
-
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "create_time")
     public Date createTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "update_time")
     public Date updateTime = new Date();
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
@@ -55,12 +51,21 @@ public class DJAdministrator implements Serializable {
         this.name = name;
     }
 
-    public int getIsdel() {
-        return isdel;
+    public int getIsDel() {
+        return isDel;
     }
 
-    public void setIsdel(int isdel) {
-        this.isdel = isdel;
+    public void setIsDel(int isdel) {
+        this.isDel = isdel;
+    }
+
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
     public Date getCreateTime() {

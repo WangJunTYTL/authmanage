@@ -2,7 +2,7 @@ package com.peaceful.auth.spring;
 
 import com.peaceful.auth.sdk.Impl.AuthServiceImpl;
 import com.peaceful.auth.sdk.api.AuthService;
-import com.peaceful.auth.data.domain.JSONMenu;
+import com.peaceful.auth.data.domain.JSONFunction;
 import com.peaceful.auth.sdk.exception.CreateSessionException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -46,7 +46,7 @@ public class MenuUtils extends TagSupport {
 
     public static String getFirstLevelMenu(String menuKey) throws CreateSessionException {
         AuthService authService = AuthServiceImpl.getAuthService();
-        JSONMenu menu = authService.getMenu(menuKey, AUTH_CONTEXT.getCurrentUser());
+        JSONFunction menu = authService.getFunction(menuKey, AUTH_CONTEXT.getCurrentUser());
         if (menu != null)
             return "<li class=\"active\" id='" + menuKey + "' ><a  href=\"" + menu.getUrl() + "\" >" + menu.getName() + "</a></li>\n";
         return "";
@@ -54,7 +54,7 @@ public class MenuUtils extends TagSupport {
 
     public static String getSecondLevelMenu(String menuKey) throws CreateSessionException {
         AuthService authService = AuthServiceImpl.getAuthService();
-        JSONMenu menu = authService.getMenu(menuKey, AUTH_CONTEXT.getCurrentUser());
+        JSONFunction menu = authService.getFunction(menuKey, AUTH_CONTEXT.getCurrentUser());
         if (menu != null)
             return "<div class=\"col-md-1\"><a class=\"btn btn-primary\"  id = '" + menuKey + "' href= '" + menu.getUrl() + "'" + ">" + menu.getName() + "</a></div>\n";
         return "";
@@ -62,7 +62,7 @@ public class MenuUtils extends TagSupport {
 
     public static String getSecondLevelMenu(String menuKey, String otherAttr) throws CreateSessionException {
         AuthService authService = AuthServiceImpl.getAuthService();
-        JSONMenu menu = authService.getMenu(menuKey, AUTH_CONTEXT.getCurrentUser());
+        JSONFunction menu = authService.getFunction(menuKey, AUTH_CONTEXT.getCurrentUser());
         otherAttr = otherAttr == null ? "" : otherAttr;
         if (menu != null) {
             return "<div class=\"col-md-1\"><a class=\"btn btn-primary\" id=\"" + menuKey + "\" href=\"" + menu.getUrl() + "\"" + otherAttr + ">" + menu.getName() + "</a></div>\n";
@@ -77,7 +77,7 @@ public class MenuUtils extends TagSupport {
         }
         if (StringUtils.isEmpty(otherAttr) && StringUtils.isNotEmpty(leftSpace)) {
             AuthService authService = AuthServiceImpl.getAuthService();
-            JSONMenu menu = authService.getMenu(menuKey, AUTH_CONTEXT.getCurrentUser());
+            JSONFunction menu = authService.getFunction(menuKey, AUTH_CONTEXT.getCurrentUser());
             if (menu != null)
                 return "<div class=\"col-md-1\" style=\"margin-left: " + leftSpace + ";\"><a class=\"btn btn-primary\" id=\"" + menuKey + "\" href=\"" + menu.getUrl() + "\">" + menu.getName() + "</a></div>\n";
 
@@ -88,7 +88,7 @@ public class MenuUtils extends TagSupport {
             getSecondLevelMenu(menuKey, otherAttr);
         }
         AuthService authService = AuthServiceImpl.getAuthService();
-        JSONMenu menu = authService.getMenu(menuKey, AUTH_CONTEXT.getCurrentUser());
+        JSONFunction menu = authService.getFunction(menuKey, AUTH_CONTEXT.getCurrentUser());
         otherAttr = otherAttr == null ? "" : otherAttr;
         if (menu != null) {
             return "<div class=\"col-md-1\" style=\"margin-left: " + leftSpace + ";\"><a class=\"btn btn-primary\" id=\"" + menuKey + "\" href=\"" + menu.getUrl() + "\"" + otherAttr + ">" + menu.getName() + "</a></div>\n";
@@ -123,8 +123,8 @@ public class MenuUtils extends TagSupport {
         return EVAL_BODY_INCLUDE;
     }
 
-    public static JSONMenu getMenu(String menuKey) throws CreateSessionException {
+    public static JSONFunction getMenu(String menuKey) throws CreateSessionException {
         AuthService authService = AuthServiceImpl.getAuthService();
-        return authService.getMenu(menuKey, AUTH_CONTEXT.getCurrentUser());
+        return authService.getFunction(menuKey, AUTH_CONTEXT.getCurrentUser());
     }
 }
