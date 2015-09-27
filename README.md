@@ -107,6 +107,10 @@ auth manage
 
 可参考demo项目 example
 
+### 交流
+
+QQ群：365133362
+
 
 
 
