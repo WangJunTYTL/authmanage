@@ -1,8 +1,8 @@
 package com.peaceful.auth.spring;
 
+import com.peaceful.auth.data.domain.JSONMenu;
 import com.peaceful.auth.sdk.Impl.AuthServiceImpl;
 import com.peaceful.auth.sdk.api.AuthService;
-import com.peaceful.auth.data.domain.JSONMenu;
 import com.peaceful.auth.sdk.exception.CreateSessionException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

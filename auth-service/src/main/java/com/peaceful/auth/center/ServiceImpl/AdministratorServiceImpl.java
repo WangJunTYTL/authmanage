@@ -6,6 +6,8 @@ import com.peaceful.auth.center.domain.DJAdministrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by WangJun on 14-4-19.
  */
@@ -14,6 +16,11 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Autowired
     AdministratorDao administratorDao;
+
+    @Override
+    public List<DJAdministrator> finAllAdmin() {
+        return administratorDao.findAll();
+    }
 
     public DJAdministrator findAdministratorByAdministratorId(Integer id) {
         return administratorDao.findAdministratorByAdministratorId(id);

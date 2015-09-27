@@ -42,7 +42,7 @@
         </security:filter-chain-map>
     </bean>
 
-    <bean id="HttpContextFilter" class="com.peaceful.web.util.HttpContextFilter"></bean>
+    <bean id="HttpContextFilter" class="com.peaceful.common.util.HttpContextFilter"></bean>
     <bean id="RequestContextFilter" class="com.peaceful.auth.sdk.example.filter.RequestContextFilter"></bean>
 
     <bean id="characterEncodingFilter" class="org.springframework.web.filter.CharacterEncodingFilter">

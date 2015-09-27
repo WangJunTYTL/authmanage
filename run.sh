@@ -45,24 +45,20 @@ echo "准备下载依赖包并开始构建 ..."
 [ ! -d "peaceful-basic-platform" ]   && git clone https://github.com/WangJunTYTL/peaceful-basic-platform.git
 
 cd peaceful-basic-platform
+cd peaceful-parent
 mvn clean -P${ENV} install -o  -Dmaven.test.skip=true
+cd ..
+
+cd peaceful-common-utils
+mvn clean -P${ENV} install -o  -Dmaven.test.skip=true
+cd ..
+wait
 cd ..
 
 wait
 rm -rf peaceful-basic-platform
 
-mvn -P${ENV} clean compile -o -Dmaven.test.skip=true
-cd auth-data-protocol
-mvn -P${ENV} install -o  -Dmaven.test.skip=true
-cd ..
-
-cd auth-service
-mvn -P${ENV} install -o  -Dmaven.test.skip=true
-cd ..
-
-cd auth-sdk
-mvn -P${ENV} install -o  -Dmaven.test.skip=true
-cd ..
+mvn -f pom.xml -P${ENV} install -o -Dmaven.test.skip=true
 
 cd auth-web
 mvn jetty:run -o -Dmaven.test.skip=true

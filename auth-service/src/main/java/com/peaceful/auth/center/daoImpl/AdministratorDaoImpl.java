@@ -20,6 +20,10 @@ public class AdministratorDaoImpl implements AdministratorDao {
         return (DJAdministrator) sessionFactory.getCurrentSession().get(DJAdministrator.class, id);
     }
 
+    @Override
+    public List<DJAdministrator> findAll() {
+        return sessionFactory.getCurrentSession().createQuery("from adminatrator ").list();
+    }
 
     public DJAdministrator findAdministratorByUsernameAndPass(String username,String password) {
         List<DJAdministrator> result = sessionFactory.getCurrentSession().createQuery("from adminatrator as a where a .name = ?  and a.password = ?").setString(0, username).setString(1,password).list();

@@ -1,9 +1,9 @@
 package com.peaceful.auth.spring;
 
 
+import com.peaceful.auth.data.domain.JSONRole;
 import com.peaceful.auth.sdk.Impl.AuthServiceImpl;
 import com.peaceful.auth.sdk.api.AuthService;
-import com.peaceful.auth.data.domain.JSONRole;
 import com.peaceful.auth.sdk.exception.CreateSessionException;
 import com.peaceful.auth.sdk.util.Util;
 import org.apache.commons.lang3.StringUtils;
