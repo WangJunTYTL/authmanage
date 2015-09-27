@@ -17,6 +17,19 @@ auth manage
 * [项目介绍](http://wangjuntytl.github.io/project.html)
 * [api](http://wangjuntytl.github.io/apidocs/)
 
+## 最新更新
+
+#### 2015-08-08
+1. auth sdk 与 auth  center 通信增加秘钥
+1. 优化安装过程，系统第一次启动安装时添加超级管理员，不必在手动添加
+1. 修复安装脚本run.sh
+1. 新增2.0分支，该分支将会增加更细粒度的权限控制，可以让你在方法内部获取更为精细的数据控制，目前正处于开发中
+1. 新增QQ交流群：365133362 
+
+此次更新，演示项目example可能会受到影响，请注意
+
+
+
 ## 安装与运行
 
 1. 运行之前请先安装maven和git
