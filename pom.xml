@@ -13,9 +13,9 @@
     <modules>
         <module>auth-data-protocol</module>
         <module>auth-service</module>
-        <module>auth-web</module>
         <module>auth-sdk</module>
         <module>auth-spring</module>
+        <module>auth-web</module>
         <module>example</module>
     </modules>
 
@@ -31,6 +31,7 @@
                     <target>1.6</target>
                     <optimize>true</optimize>
                     <debug>true</debug>
+                    <encoding>UTF8</encoding>
                 </configuration>
             </plugin>
         </plugins>

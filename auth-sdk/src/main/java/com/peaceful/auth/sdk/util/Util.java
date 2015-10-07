@@ -1,7 +1,6 @@
 package com.peaceful.auth.sdk.util;
 
 
-import java.util.Objects;
 
 /**
  * An internal utility class.
@@ -34,6 +33,6 @@ public class Util {
     }
 
     static final public void report(Object object) {
-        System.err.println("P_LOG: " + Objects.toString(object, null));
+        System.err.println("P_LOG: " +object.toString());
     }
 }

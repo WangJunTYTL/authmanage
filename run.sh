@@ -62,7 +62,7 @@ cd ..
 wait
 rm -rf peaceful-basic-platform
 
-mvn -f pom.xml -P${ENV} install -o -Dmaven.test.skip=true ||exit 1
+mvn -f pom.xml -P${ENV} install -Dmaven.test.skip=true || exit 1
 
 cd auth-web
 mvn jetty:run -o -Dmaven.test.skip=true
