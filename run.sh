@@ -46,11 +46,11 @@ echo "准备下载依赖包并开始构建 ..."
 
 cd peaceful-basic-platform
 cd peaceful-parent
-mvn clean -P${ENV} install -o  -Dmaven.test.skip=true
+mvn clean -P${ENV} install  -Dmaven.test.skip=true
 cd ..
 
 cd peaceful-common-utils
-mvn clean -P${ENV} install -o  -Dmaven.test.skip=true
+mvn clean -P${ENV} install  -Dmaven.test.skip=true
 cd ..
 wait
 cd ..
