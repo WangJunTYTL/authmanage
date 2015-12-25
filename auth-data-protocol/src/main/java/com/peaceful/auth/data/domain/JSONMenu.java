@@ -3,14 +3,39 @@ package com.peaceful.auth.data.domain;
 import java.io.Serializable;
 
 /**
- * Created by wangjun on 14-4-23.
+ * Sdk and authCenter to exchange  data about functions
+ * <p/>
+ * A function may be an object of a method or multiple methods, or multiple methods of different objects
+ * <p/>
+ *
+ * @author wangjun
+ * @version 1.0 14-4-23
+ * @since 1.6
  */
 public class JSONMenu implements Serializable {
+    /**
+     * The user id as the primary key
+     */
     public Integer id;
+    /**
+     * The unique identification of the function
+     */
     public String menukey;
+    /**
+     * The name of this function
+     */
     public String name;
+    /**
+     * The url of this function
+     */
     public String url;
+    /**
+     * The parent of this function
+     */
     public Integer parentId;
+    /**
+     * Tag the function is deleted
+     */
     public int isdel;
 
 

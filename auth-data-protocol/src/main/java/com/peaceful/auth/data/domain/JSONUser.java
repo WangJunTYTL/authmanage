@@ -6,25 +6,69 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Sdk and authCenter to exchange  data about user
+ * <p/>
  * Created by wangjun on 14-4-23.
  */
-public class JSONUser implements Serializable{
+public class JSONUser implements Serializable {
 
+    /**
+     * The user id as the primary key
+     */
     public Integer id;
+    /**
+     * The user login account , recommend email
+     */
     public String email;
+    /**
+     * User's real name
+     */
     public String name;
+    /**
+     * User's  password
+     */
     public String password;
+    /**
+     * Pass state
+     * <p/>
+     * 0 The System initialization pass
+     * 1 The user modified the password
+     * 2 Expired pass
+     */
     public int passwordState;
+    /**
+     * Operator manager
+     */
     public String operator;
+    /**
+     * Tag the user is deleted
+     */
     public int isdel;
+    /**
+     * Create a user time
+     */
     public Date createTime;
+    /**
+     * Update a user time
+     */
     public Date updateTime;
+    /**
+     * Users have the resources
+     */
     public List<JSONResource> resources = new ArrayList<JSONResource>();
+    /**
+     * Users have the functions
+     */
     public List<JSONMenu> menus = new ArrayList<JSONMenu>();
+    /**
+     * Users have the roles
+     */
     public List<JSONRole> roles = new ArrayList<JSONRole>();
+
     public Date getCreateTime() {
         return createTime;
     }
+
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
