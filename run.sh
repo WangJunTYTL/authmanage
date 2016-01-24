@@ -45,6 +45,7 @@ echo "准备下载依赖包并开始构建 ..."
 [ -d "./peaceful-basic-platform" ] && rm -rf ./peaceful-basic-platform
 git clone https://github.com/WangJunTYTL/peaceful-basic-platform.git ||  exit 1
 cd peaceful-basic-platform
+mvn clean -P${ENV} -f peaceful-parent/pom.xml install  -Dmaven.test.skip=true || exit 1
 mvn clean -P${ENV} install  -Dmaven.test.skip=true || exit 1
 cd ..
 
