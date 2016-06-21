@@ -125,7 +125,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         if (element == null) {
             String result = HttpUtils.get(publicServiceURL.user_info + email);
             boolean flag = true;
-            if (result.equals("null")) {
+            if ("null".equals(result)) {
                 clearSession(email);
                 flag = false;
             }
@@ -212,7 +212,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         data.put("email", email);
         data.put("password", password);
         data.put("systemId", publicServiceURL.system_id);
-        return (HttpUtils.post(publicServiceURL.identification_email, data).equals("true") ? true : false);
+        return ("true".equals(HttpUtils.post(publicServiceURL.identification_email, data)) ? true : false);
     }
 
 

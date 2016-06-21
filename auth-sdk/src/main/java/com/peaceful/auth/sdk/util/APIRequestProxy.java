@@ -43,7 +43,7 @@ public class APIRequestProxy {
                     pairs.add(new BasicNameValuePair(params1.name(), (String) args[i]));
                 }
                 String action = method1.action();
-                if (action.equals("get"))
+                if ("get".equals(action))
                     return HttpClient.get(url, pairs);
                 else
                     return HttpClient.post(url, pairs);
