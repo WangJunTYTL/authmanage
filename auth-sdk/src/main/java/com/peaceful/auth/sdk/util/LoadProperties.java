@@ -19,7 +19,7 @@ public class LoadProperties {
             return Collections.EMPTY_MAP;
         Map<String, String> conf = new HashMap<String, String>();
         InputStream is = null;
-        if (conf.size() == 0) {
+        if (conf.isEmpty()) {
             try {
                 is = getClassLoader().getResourceAsStream(
                         path);
@@ -96,7 +96,7 @@ public class LoadProperties {
             logger.warn("Fail to load " + fileName + " file: " + t.getMessage(), t);
         }
 
-        if(list.size() == 0) {
+        if(list.isEmpty()) {
             if (! optional) {
                 logger.warn("No " + fileName + " found on the class path.");
             }

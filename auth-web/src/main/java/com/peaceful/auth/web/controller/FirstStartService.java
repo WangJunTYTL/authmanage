@@ -23,7 +23,7 @@ public class FirstStartService {
     static {
         AdministratorService administratorService = AppContextService.applicationContext.getBean(AdministratorService.class);
         List<DJAdministrator> administrators = administratorService.finAllAdmin();
-        if (administrators.size() == 0) {
+        if (administrators.isEmpty()) {
             DJAdministrator administrator = new DJAdministrator();
             administrator.createTime = new Date();
             administrator.isdel = 1;

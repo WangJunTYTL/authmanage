@@ -114,7 +114,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             return false;
         }
         List<JSONRole> roleList = authService.getUser(email).roles;
-        if (roleList == null || roleList.size() == 0)
+        if (roleList == null || roleList.isEmpty())
             return false;
         for (int i = 0; i < keys.length; i++) {
             for (int n = 0; n < roleList.size(); n++) {

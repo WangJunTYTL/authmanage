@@ -25,7 +25,7 @@ public class MenuDaoImpl implements MenuDao {
 
     public DJMenu findMenuByMenukey(String key, Integer systemId) {
         List result = sessionFactory.getCurrentSession().createQuery("from menu  where menukey = ? and system.id = ?").setString(0, key).setInteger(1, systemId).list();
-        if (result != null && result.size() > 0) {
+        if (result != null && !result.isEmpty()) {
             return (DJMenu) result.get(0);
         }
         return null;

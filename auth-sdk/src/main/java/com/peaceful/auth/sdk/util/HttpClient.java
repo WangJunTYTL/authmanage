@@ -188,7 +188,7 @@ public abstract class HttpClient {
     private static String urlParamEncoding(String url, String encoding) throws UnsupportedEncodingException {
         StringBuffer params = new StringBuffer(url.length() + 26);
         List<BasicNameValuePair> basicNameValuePairs = parseParamsOfUrl(url);
-        if (basicNameValuePairs != null && basicNameValuePairs.size() != 0) {
+        if (basicNameValuePairs != null && !basicNameValuePairs.isEmpty()) {
             params.append("?");
             for (BasicNameValuePair nv : basicNameValuePairs) {
                 params.append(nv.getName()).append("=").append(URLEncoder.encode(nv.getValue(), encoding)).append("&");
