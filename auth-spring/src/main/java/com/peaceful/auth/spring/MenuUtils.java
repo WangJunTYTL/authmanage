@@ -102,10 +102,10 @@ public class MenuUtils extends TagSupport {
             return EVAL_BODY_INCLUDE;
         JspWriter out = this.pageContext.getOut();
         try {
-            if (menuLevel.equals("L1") || menuLevel.equals("L2")) {
-                if (menuLevel.equals("L1"))
+            if ("L1".equals(menuLevel) || "L2".equals(menuLevel)) {
+                if ("L1".equals(menuLevel))
                     out.print(getFirstLevelMenu(menuKey));
-                else if (menuLevel.equals("L2")) {
+                else if ("L2".equals(menuLevel)) {
                     if (StringUtils.isNotEmpty(otherAttr))
                         out.print(getSecondLevelMenu(menuKey, otherAttr, leftSpace));
                     else
