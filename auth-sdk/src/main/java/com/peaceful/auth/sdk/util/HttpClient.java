@@ -170,8 +170,6 @@ public abstract class HttpClient {
         if (StringUtils.isNotEmpty(paramsStr)) {
             String[] paramsArr = paramsStr.substring(1).split("&");
             List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
-            if (params == null)
-                params = new ArrayList<BasicNameValuePair>();
             for (String str : paramsArr) {
                 String[] each = str.split("=");
                 if (each.length == 0) {

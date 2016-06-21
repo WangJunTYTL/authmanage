@@ -163,7 +163,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
             } else if (type == 3) {
                 res = "<a " + attribute + ">" + res_menu.name + "</a>";
             }
-        } else if (res_menu == null) {
+        } else {
             if (type == 4) {
                 res = "<button " + attribute + ">" + "<span style='color'>" + res_menu.name + "</span></button>";
             } else if (type == 5) {

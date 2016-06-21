@@ -118,12 +118,10 @@ public class AdminController {
         system.id = systemId;
         menu.system = system;
         List<DJRole> roles = new ArrayList<DJRole>();
-        if (roleIds != null) {
-            for (Integer id : roleIds) {
-                DJRole role = new DJRole();
-                role.id = id;
-                roles.add(role);
-            }
+        for (Integer id : roleIds) {
+            DJRole role = new DJRole();
+            role.id = id;
+            roles.add(role);
         }
         menu.roles = roles;
         if (menu.parentMenu == null || menu.parentMenu.id == null)
