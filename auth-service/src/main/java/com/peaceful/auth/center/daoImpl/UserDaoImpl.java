@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
 
     public DJUser findUserByUserName(String name, Integer systemId) {
         List result = sessionFactory.getCurrentSession().createQuery("from user where email = ? and system.id = ?").setString(0, name).setInteger(1, systemId).list();
-        if (result != null && result.size() > 0) {
+        if (result != null && !result.isEmpty()) {
             return (DJUser) result.get(0);
         }
         return null;
@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public DJUser findUserByUserNameAndPassword(String name, Integer systemId,String password) {
         List result = sessionFactory.getCurrentSession().createQuery("from user where email = ? and system.id = ? and password = ?").setString(0, name).setInteger(1, systemId).setString(2,password).list();
-        if (result != null && result.size() > 0) {
+        if (result != null && !result.isEmpty()) {
             return (DJUser) result.get(0);
         }
         return null;

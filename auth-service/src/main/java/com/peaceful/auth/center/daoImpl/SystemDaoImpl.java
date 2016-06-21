@@ -40,7 +40,7 @@ public class SystemDaoImpl implements SystemDao {
     @Override
     public DJSystem findSystemByAppkay(String appkey) {
         List result = sessionFactory.getCurrentSession().createQuery("from DJSystem where appkey = ?").setString(0, appkey).list();
-        if (result != null && result.size() > 0) {
+        if (result != null && !result.isEmpty()) {
             return (DJSystem) result.get(0);
         }
         return null;
@@ -49,7 +49,7 @@ public class SystemDaoImpl implements SystemDao {
     @Override
     public DJSystem findSystemByAppkayAndSecret(String appkey, String secret) {
         List<DJSystem> result = sessionFactory.getCurrentSession().createQuery("from DJSystem as a where a .appkey = ?  and a.secret = ?").setString(0, appkey).setString(1,secret).list();
-        if (result != null && result.size() > 0)
+        if (result != null && !result.isEmpty())
             return result.get(0);
         else
             return null;
@@ -96,7 +96,7 @@ public class SystemDaoImpl implements SystemDao {
 
     public DJSystem findSystemByName(String name) {
         List result = sessionFactory.getCurrentSession().createQuery("from DJSystem where name = ?").setString(0, name).list();
-        if (result != null && result.size() > 0) {
+        if (result != null && !result.isEmpty()) {
             return (DJSystem) result.get(0);
         }
         return null;

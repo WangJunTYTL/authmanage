@@ -34,7 +34,7 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public DJRole findRoleByName(String name,Integer systemId) {
         List result =  sessionFactory.getCurrentSession().createQuery("from role where name = ? and system.id = ?").setString(0,name).setInteger(1,systemId).list();
-        if (result!=null&&result.size()>0){
+        if (result!=null&& !result.isEmpty()){
             return (DJRole) result.get(0);
         }
         return null;

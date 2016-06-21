@@ -55,7 +55,7 @@ public class HibernateSystemUtil {
                 case 5: {
                     system.roles.size();
                     if (system != null)
-                        if (system.roles != null && system.roles.size() != 0)
+                        if (system.roles != null && !system.roles.isEmpty())
                             system.roles.iterator().hasNext();
                     break;
                 }
